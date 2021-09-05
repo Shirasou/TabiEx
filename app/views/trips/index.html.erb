@@ -1,0 +1,9 @@
+<% @trips.each do |trip| %>
+<div>
+  <%= image_tag trip.image %>
+  <p class="trip-evaluation">評価：<%= trip.evaluation %></p>
+  <p>タイトル：<%= trip.title %></p>
+  <p>都市：<%= trip.city %></p>
+  <p>時間帯：<%= trip.date_time %></p>
+</div>
+<% end %>

@@ -1,0 +1,28 @@
+<h1>投稿フォーム</h1>
+<%= form_with model: @trip, local:true do |f| %>
+  <div>
+  <h4>画像</h4>
+  <%= f.file_field :image %>
+  </div>
+  
+  <div id="evaluation_stars">
+  <h4>評価</h4>
+  </div>
+  
+  <div>
+  <h4>タイトル</h4>
+  <%= f.text_field :title %>
+  </div>
+  
+  <div>
+  <h4>都市</h4>
+  <%= f.text_field :city %>
+  </div>
+  
+  <div>
+  <h4>時刻</h4>
+  <%= f.time_select :date_time %>
+  </div>
+  
+  <%= f.submit '投稿' %>
+<% end %>
