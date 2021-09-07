@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  category_id: 1
+  trip_way_id: 1
+  title: MyText
+  evaluation: 1.5
+  date_time: 
+  turn: 1
+  description: MyText
+  city: MyString
+
+two:
+  user_id: 1
+  category_id: 1
+  trip_way_id: 1
+  title: MyText
+  evaluation: 1.5
+  date_time: 
+  turn: 1
+  description: MyText
+  city: MyString
