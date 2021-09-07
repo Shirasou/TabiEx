@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_04_144601) do
+ActiveRecord::Schema.define(version: 2021_09_06_045550) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -33,12 +33,98 @@ ActiveRecord::Schema.define(version: 2021_09_04_144601) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "trip_id", null: false
+    t.integer "user_id", null: false
+    t.text "comment", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "entries", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "room_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "room_id", null: false
+    t.text "message", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "message_id"
+    t.integer "visiter_id"
+    t.integer "visited_id"
+    t.integer "comment_id"
+    t.integer "trip_like_id"
+    t.string "action"
+    t.boolean "check"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "followed_id"
+    t.integer "follower_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "trip_likes", force: :cascade do |t|
+    t.integer "trip_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "trip_tags", force: :cascade do |t|
+    t.integer "tag_id", null: false
+    t.integer "trip_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "trip_ways", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "title", null: false
+    t.float "evaluation", default: 0.0, null: false
+    t.text "description", null: false
+    t.date "start_date", null: false
+    t.date "finish_date", null: false
+    t.integer "number_of_people", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "trips", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "category_id"
     t.integer "trip_way_id"
     t.text "title", null: false
-    t.float "evaluation", null: false
+    t.float "evaluation", default: 0.0, null: false
     t.datetime "date_time", null: false
     t.text "description", null: false
     t.string "city", null: false
@@ -53,7 +139,7 @@ ActiveRecord::Schema.define(version: 2021_09_04_144601) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name", null: false
-    t.integer "sex", null: false
+    t.integer "sex", default: 0, null: false
     t.text "introduction"
     t.date "birth_at", null: false
     t.datetime "created_at", null: false
