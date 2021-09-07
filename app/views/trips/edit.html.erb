@@ -1,0 +1,54 @@
+<%= form_with model: @trip, local:true do |f| %>
+ <div class="images-field">
+  <h4>画像</h4>
+  <%= f.file_field :images, multiple: true %>
+  <% if @trip.images.present? %>
+    <p>現在登録されている画像（削除するものはチェックしてください）</p>
+    <% @trip.images.each do |image| %>
+      <%= f.check_box :image_ids, {multiple: true}, image.id, false %>
+      <%= image_tag image.variant(resize: "150x150") %> <br>
+    <% end %>
+  <% end %>
+  </div>
+
+  <div>
+  <h4>評価</h4>
+　<span id="evaluation_stars"></span>
+  </div>
+
+  <div>
+  <h4>タイトル</h4>
+  <%= f.text_field :title %>
+  </div>
+
+  <div>
+  <h4>都市</h4>
+  <%= f.text_field :city %>
+  </div>
+
+  <div>
+  <h4>時刻</h4>
+  <%= f.time_select :date_time %>
+  </div>
+
+  <div>
+  <h4>説明</h4>
+  <%= f.text_area :description %>
+  </div>
+
+  <div>
+    <%= f.submit  '編集する' %>
+  </div>
+<% end %>
+
+<script>
+  $('#evaluation_stars').raty({
+    size: 36,
+    starOff: "<%= asset_path('star-off.png') %>",
+    starOn: "<%= asset_path('star-on.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    scoreName: 'trip[evaluation]',
+    half: true,
+    score: <%= @trip.evaluation %>
+  });
+</script>
