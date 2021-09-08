@@ -3,9 +3,7 @@
     <% comment_user = comment.user %>
     <tr>
     	<td>
-    		
-      		<%= comment_user.name %>
-    		
+    	  <%= comment_user.name %>
     	</td>
     	<td><%= comment.comment %></td>
     	<% if current_user == comment_user %>
