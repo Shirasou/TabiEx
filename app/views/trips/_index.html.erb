@@ -1,0 +1,24 @@
+<% trips.each do |trip| %>
+<div>
+  <% trip.images.each do |image| %>
+  <%= image_tag image.variant(resize: "150x150") %>
+  <% end %>
+  <p>評価：
+  <span class="trip-evaluation" data-score="<%= trip.evaluation %>"></span>
+  </p>
+  <p>タイトル：<%= trip.title %></p>
+  <p>都市：<%= trip.city %></p>
+  <p>時間帯：<%= trip.date_time %></p>
+  <p>説明：<%= trip.description %></p>
+  <p><%= link_to "Show", trip_path(trip) %></p>
+</div>
+<% end %>
+<script>
+  $('.trip-evaluation').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+</script>

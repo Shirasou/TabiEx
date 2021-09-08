@@ -142,6 +142,7 @@ ActiveRecord::Schema.define(version: 2021_09_06_045550) do
     t.integer "sex", default: 0, null: false
     t.text "introduction"
     t.date "birth_at", null: false
+    t.boolean "is_valid", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
