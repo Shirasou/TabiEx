@@ -1,8 +1,10 @@
 <h1>投稿フォーム</h1>
 <%= form_with model: @trip, local:true do |f| %>
   <div class="images-field">
+    <div class="field">
   <h4>画像</h4>
   <%= f.file_field :images, multiple: true %>
+  </div>
   </div>
 
   <div>

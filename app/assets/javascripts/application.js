@@ -16,11 +16,26 @@
 //= require turbolinks
 //= require_tree .
 
-$('#evaluation_stars').raty({
-    size: 36,
-    starOff: "<%= asset_path('star-off.png') %>",
-    starOn: "<%= asset_path('star-on.png') %>",
-    starHalf: "<%= asset_path('star-half.png') %>",
-    scoreName: 'trip[evaluation]',
-    half: true
-  });
+$(document).on('turbolinks:load', function() {
+
+  $('#tirp_images').on('change',function(e){
+    var files = e.target.files;
+    var d = (new $.Deferred()).resolve();
+    $.each(files,function(i,file){
+      d = d.then(function(){return previewImage(file)});
+    });
+  })
+
+  var previewImage = function(imageFile){
+    var reader = new FileReader();
+    var img = new Image();
+    var def =$.Deferred();
+    reader.onload = function(e){
+      $('.images_field').append(img);
+      img.src = e.target.result;
+      def.resolve(img);
+    };
+    reader.readAsDataURL(imageFile);
+    return def.promise();
+  }
+})
