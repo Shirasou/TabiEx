@@ -37,8 +37,7 @@ class TripsController < ApplicationController
       end
     end
     if @trip.update_attributes(trip_params)
-      flash[:success] = "編集しました"
-      redirect_to trips_path
+      redirect_to trips_path, notice: "You have updated book successfully."
     else
       render :edit
     end
@@ -61,7 +60,8 @@ class TripsController < ApplicationController
   end
 
   def ensure_correct_user
-    @user = User.find(params[:id])
+    @trip = Trip.find(params[:id])
+    @user = @trip.user
     unless @user == current_user
       redirect_to user_path(current_user)
     end

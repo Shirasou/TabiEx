@@ -15,7 +15,7 @@
 </div>
 
 <% if @trip.user == current_user %>
-<p><%= link_to 'Edit', edit_trip_path(@trip.id) %></p>
+<p><%= link_to 'Edit', edit_trip_path(@trip) %></p>
 <p><%= link_to 'Destroy', trip_path(@trip), method: :delete, data: { confirm: '本当に消しますか？' } %></p>
 <% end %>
 
