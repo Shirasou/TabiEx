@@ -14,4 +14,6 @@ Rails.application.routes.draw do
       patch 'withdraw'
     end
   end
+  resources :messages, only: [:create]
+  resources :rooms, only: [:create,:show]
 end
