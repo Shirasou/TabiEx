@@ -37,3 +37,16 @@
     <%= link_to 'edit', edit_user_path(user) %>
   <% end %>
 </div>
+
+<% unless user.id == current_user.id %>
+  <% if isRoom == true %>
+    <%= link_to "チャットへ", romm_path(roomId) %>
+  <% else %>
+    <%= form_with model: room, local: true do |f| %>
+      <%= fields_for entry do |e| %>
+        <%= e.hidden_field :user_id, value: user.id %>
+      <% end %>
+      <%= f.submit "チャットを始める" %>
+    <% end %>
+  <% end %>
+<% end %>
