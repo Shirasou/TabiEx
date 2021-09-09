@@ -38,17 +38,15 @@
   <% end %>
 </div>
 
-<% unless @user.id == current_user.id %>
-  <% if (current_user.followed_by? @user) && (@user.followed_by? current_user)  %>
-  <% if @isRoom == true %>
-    <p class="user-show-room"><a href="/rooms/<%= @roomId %>">チャットへ</a>
+<% unless user.id == current_user.id %>
+  <% if isRoom == true %>
+    <%= link_to "チャットへ", romm_path(roomId) %>
   <% else %>
-    <%= form_for @room do |f| %>
-      <%= fields_for @entry do |e| %>
-        <%= e.hidden_field :user_id, value: @user.id %>
+    <%= form_with model: room, local: true do |f| %>
+      <%= fields_for entry do |e| %>
+        <%= e.hidden_field :user_id, value: user.id %>
       <% end %>
       <%= f.submit "チャットを始める" %>
     <% end %>
-  <% end %>
   <% end %>
 <% end %>
