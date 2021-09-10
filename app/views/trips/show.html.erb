@@ -9,6 +9,14 @@
   <p>タイトル：<%= @trip.title %></p>
   <p>都市：<%= @trip.city %></p>
   <p>時間帯：<%= @trip.date_time %></p>
+  <p>タグ：
+  <% @trip_tags.each do |tag| %>
+  <span>
+    <%= link_to tag.name, tag_posts_path(tag_id: tag.id) %>
+    <%= tag.trips.count %>
+  </span>
+  <% end %>
+  </p>
   <p>説明：<%= @trip.description %></p>
   <p>コメント数: <%= @trip.comments.count %></p>
   <p class="favorite-btn"><%= render "trip_likes/like-btn", trip: @trip %></p>
