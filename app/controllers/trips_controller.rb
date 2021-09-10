@@ -4,17 +4,21 @@ class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
   def index
+    @tag_list = Tag.all
     @trips = Trip.all
   end
 
   def new
     @trip = Trip.new
+    @trip_tags = @trip.tags
   end
 
   def create
     @trip = Trip.new(trip_params)
+    tag_list = params[:trip][:name].split(nil)
     @trip.user_id = current_user.id
     if @trip.save
+      @trip.save_tag(tag_list)
       flash[:success] = "作成しました"
       redirect_to trips_path
     else
@@ -24,6 +28,12 @@ class TripsController < ApplicationController
 
   def show
     @comment = Comment.new
+  end
+
+  def search
+    @tag_list = Tag.all
+    @tag = Tag.find(params[:tag_id])
+    @trips = @tag.trips.all
   end
 
   def edit
@@ -53,6 +63,7 @@ class TripsController < ApplicationController
 
   def set_trip
     @trip = Trip.find(params[:id])
+    @trip_tags = @trip.tags
   end
 
   def trip_params

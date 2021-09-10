@@ -1,0 +1,16 @@
+<h2>投稿一覧</h2>
+<% @tag_list.each do |list| %>
+  <span>
+  <%= link_to list.name, tag_trips_path(tag_id: list.id) %>
+  <%= list.trips.count %>
+  </sapn>
+<% end %>
+
+<div>
+  <h4>タグが
+  <strong>
+    <%= @tag.name %>
+  </strong>
+  の投稿一覧</h4>
+</div>
+<%= render 'index', trips: @trips %>
