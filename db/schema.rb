@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(version: 2021_09_06_045550) do
 
   create_table "trip_ways", force: :cascade do |t|
     t.integer "user_id", null: false
+    t.integer "trip_id", null: false
     t.string "title", null: false
     t.float "evaluation", default: 0.0, null: false
     t.text "description", null: false
