@@ -1,0 +1,42 @@
+<% trip_ways.each do |trip_way| %>
+  <p>タイトル：<%= trip_way.title %></p>
+  <p>評価：
+  <span class="trip-evaluation" data-score="<%= trip_way.evaluation %>"></span>
+  </p>
+  <p>出発日：<%= trip_way.start_date %></p>
+  <p>帰宅日：<%= trip_way.finish_date %></p>
+  <p>人数：<%= trip_way.number_of_people %></p>
+  <p>説明：<%= trip_way.description %></p>
+  <% trip_way.trips.each do |trip| %>
+  <div>
+    <% trip.images.each do |image| %>
+    <%= image_tag image.variant(resize: "150x150") %>
+    <% end %>
+    <p>評価：
+    <span class="trip-evaluation" data-score="<%= trip.evaluation %>"></span>
+    </p>
+    <p>タイトル：<%= trip.title %></p>
+    <p>都市：<%= trip.city %></p>
+    <p>時間帯：<%= trip.date_time %></p>
+    <p>説明：<%= trip.description %></p>
+    <p><%= link_to "Show", trip_path(trip) %></p>
+  </div>
+  <% end %>
+<% end %>
+<script>
+  $('.trip-evaluation').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+
+  $('.trip-evaluation').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+</script>

@@ -1,5 +1,5 @@
 <h1>投稿フォーム</h1>
-<%= form_with model: @trip, local:true do |f| %>
+<%= form_with model: @trip_way, local:true do |f| %>
 
   <div>
   <h4>タイトル</h4>
@@ -9,6 +9,13 @@
   <div>
   <h4>評価</h4>
 　<span id="evaluation_stars"></span>
+  </div>
+
+  <div>
+  <h4>旅行</h4>
+　  <%= f.collection_check_boxes(:trip_id, @trips, :id, :title) do |b| %>
+　    <%= b.label { b.check_box + b.text } %>
+　  <% end %>
   </div>
 
   <div>
@@ -22,7 +29,7 @@
   </div>
 
   <div>
-  <h4>時刻</h4>
+  <h4>人数</h4>
   <%= f.number_field :number_of_people %>
   </div>
 
