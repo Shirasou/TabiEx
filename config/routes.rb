@@ -16,12 +16,9 @@ Rails.application.routes.draw do
   end
   resources :messages, only: [:create]
   resources :rooms, only: [:create,:show]
-<<<<<<< HEAD
   resources :trip_ways
-=======
   resources :tags do
     get 'trips', to: 'trips#search'
   end
   get '/search', to: 'searches#search'
->>>>>>> ba8c09eb50407a7414d50e2546c61eb8d20398e9
 end
