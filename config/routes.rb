@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'search/search'
   root 'homes#top'
   devise_for :users
   resources :trips do
@@ -16,5 +17,11 @@ Rails.application.routes.draw do
   end
   resources :messages, only: [:create]
   resources :rooms, only: [:create,:show]
+<<<<<<< HEAD
+=======
+  resources :tags do
+    get 'trips', to: 'trips#search'
+  end
+>>>>>>> 65e38b4eabb65b444b32f85f481f47cfbaa6b811
   get '/search', to: 'searches#search'
 end
