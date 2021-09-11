@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'search/search'
   root 'homes#top'
   devise_for :users
   resources :trips do
