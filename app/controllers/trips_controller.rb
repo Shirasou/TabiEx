@@ -4,7 +4,7 @@ class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tag_list = Tag.all
+    @tag_lists = Tag.all
     @trips = Trip.all
   end
 

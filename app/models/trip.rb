@@ -1,7 +1,7 @@
 class Trip < ApplicationRecord
   belongs_to :user
-  belongs_to :trip_way, optional: :true
   belongs_to :category, optional: :true
+  has_many :trip_way_relations
   has_many :trip_tags, dependent: :destroy
   has_many :tags, through: :trip_tags
   has_many :comments, dependent: :destroy
