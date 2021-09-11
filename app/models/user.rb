@@ -19,7 +19,7 @@ class User < ApplicationRecord
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
 
   enum sex: { 女性:1,男性:2,該当なし:3 }
-  
+
   def follow(user_id)
     relationships.create(followed_id: user_id)
   end
@@ -30,5 +30,17 @@ class User < ApplicationRecord
 
   def following?(user)
     followings.include?(user)
+  end
+
+  def self.search_for(content,method)
+    if method == 'perfect'
+      User.where(name: content)
+    elsif method == 'forward'
+      User.where('name LIKE ?', content + '%' )
+    elsif method == 'backward'
+      User.where('name LIKE ?', '%' + content)
+    else
+      User.where('name LIKE ?', '%' + content + '%' )
+    end
   end
 end
