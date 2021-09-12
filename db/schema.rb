@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_06_045550) do
+ActiveRecord::Schema.define(version: 2021_09_11_072636) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -107,6 +107,14 @@ ActiveRecord::Schema.define(version: 2021_09_06_045550) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "trip_way_relations", force: :cascade do |t|
+    t.integer "trip_id"
+    t.integer "trip_way_id"
+    t.integer "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "trip_ways", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "title", null: false
@@ -122,7 +130,6 @@ ActiveRecord::Schema.define(version: 2021_09_06_045550) do
   create_table "trips", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "category_id"
-    t.integer "trip_way_id"
     t.text "title", null: false
     t.float "evaluation", default: 0.0, null: false
     t.datetime "date_time", null: false

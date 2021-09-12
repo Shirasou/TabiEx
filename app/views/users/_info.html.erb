@@ -40,7 +40,7 @@
 
 <% unless user.id == current_user.id %>
   <% if isRoom == true %>
-    <%= link_to "チャットへ", romm_path(roomId) %>
+    <%= link_to "チャットへ", room_path(roomId) %>
   <% else %>
     <%= form_with model: room, local: true do |f| %>
       <%= fields_for entry do |e| %>
