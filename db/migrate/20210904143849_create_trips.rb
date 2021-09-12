@@ -3,7 +3,6 @@ class CreateTrips < ActiveRecord::Migration[5.2]
     create_table :trips do |t|
       t.integer :user_id, null: false
       t.integer :category_id
-      t.integer :trip_way_id
       t.text :title, null: false
       t.float :evaluation, null: false, default: 0
       t.datetime :date_time, null: false
