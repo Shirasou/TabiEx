@@ -7,21 +7,25 @@
   <p>帰宅日：<%= trip_way.finish_date %></p>
   <p>人数：<%= trip_way.number_of_people %></p>
   <p>説明：<%= trip_way.description %></p>
-  <% trip_way.trips.each do |trip| %>
+  <% trip_count = 1 %>
+  <% trip_way.trip_way_relations.each do |f| %>
   <div>
-    <% trip.images.each do |image| %>
+    <%= trip_count %>
+    <% f.trip.images.each do |image| %>
     <%= image_tag image.variant(resize: "150x150") %>
     <% end %>
     <p>評価：
-    <span class="trip-evaluation" data-score="<%= trip.evaluation %>"></span>
+    <span class="trip-evaluation" data-score="<%= f.trip.evaluation %>"></span>
     </p>
-    <p>タイトル：<%= trip.title %></p>
-    <p>都市：<%= trip.city %></p>
-    <p>時間帯：<%= trip.date_time %></p>
-    <p>説明：<%= trip.description %></p>
-    <p><%= link_to "Show", trip_path(trip) %></p>
+    <p>タイトル：<%= f.trip.title %></p>
+    <p>都市：<%= f.trip.city %></p>
+    <p>時間帯：<%= f.trip.date_time %></p>
+    <p>説明：<%= f.trip.description %></p>
+    <p><%= link_to "Show", trip_path(f.trip.id) %></p>
   </div>
+  <% trip_count = trip_count + 1 %>
   <% end %>
+  <p><%= link_to "Show", trip_way_path(trip_way) %></p>
 <% end %>
 <script>
   $('.trip-evaluation').raty({

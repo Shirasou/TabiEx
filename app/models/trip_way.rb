@@ -1,6 +1,7 @@
 class TripWay < ApplicationRecord
   belongs_to :user
-  has_many :trip_way_relation
+  has_many :trip_way_relations, dependent: :destroy
+  accepts_nested_attributes_for :trip_way_relations, allow_destroy: true
 
   validates :evaluation, numericality: {
     less_than_or_equal_to: 5,

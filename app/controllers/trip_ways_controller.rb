@@ -10,7 +10,7 @@ class TripWaysController < ApplicationController
   def new
     @trips = current_user.trips.all
     @trip_way = TripWay.new
-    @trip_way.trip_way_relation.build
+    @trip_way.trip_way_relations.build
   end
 
   def create
@@ -47,15 +47,15 @@ class TripWaysController < ApplicationController
   private
 
   def set_trip_way
-    @trip_way = Trip_way.find(params[:id])
+    @trip_way = TripWay.find(params[:id])
   end
 
   def trip_way_params
-    params.require(:trip_way).permit(:title, :evaluation, :description, :start_date, :finish_date, :number_of_people, trip_way_relation_attributes:[:trip_id, :trip_way_id, :number])
+    params.require(:trip_way).permit(:title, :evaluation, :description, :start_date, :finish_date, :number_of_people, trip_way_relations_attributes:[:trip_id, :trip_way_id, :number])
   end
 
   def ensure_correct_user
-    @trip_way = Trip_way.find(params[:id])
+    @trip_way = TripWay.find(params[:id])
     @user = @trip_way.user
     unless @user == current_user
       redirect_to user_path(current_user)

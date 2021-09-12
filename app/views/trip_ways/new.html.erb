@@ -11,14 +11,16 @@
 　<span id="evaluation_stars"></span>
   </div>
 
-  <%= f.fields_for :trip_way_relation, @trip_way.trip_way_relation do |g| %>
   <div>
   <h4>旅行</h4>
-　  <%= g.collection_check_boxes(:trip_id, @trips, :id, :title) do |b| %>
-　    <%= b.label { b.check_box + b.text } %>
+  <%= f.fields_for :trip_way_relations do |trip| %>
+  <%= render 'trip_way_relation_fields', f: trip %>
+    <div id="links">
+      <%= link_to_add_association "add trip", f, :trip_way_relations %><br/>
+    </div>
 　  <% end %>
   </div>
-  <% end %>
+
 
   <div>
   <h4>出発日</h4>
