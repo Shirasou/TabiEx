@@ -12,7 +12,7 @@
   <p>タグ：
   <% @trip_tags.each do |tag| %>
   <span>
-    <%= link_to tag.name, tag_posts_path(tag_id: tag.id) %>
+    <%= link_to tag.name, tag_trips_path(tag_id: tag.id) %>
     <%= tag.trips.count %>
   </span>
   <% end %>
