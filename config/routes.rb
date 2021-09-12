@@ -19,5 +19,6 @@ Rails.application.routes.draw do
   resources :tags do
     get 'trips', to: 'trips#search'
   end
+  resources :notifications, only: [:index]
   get '/search', to: 'searches#search'
 end

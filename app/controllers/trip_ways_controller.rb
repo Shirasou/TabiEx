@@ -4,7 +4,7 @@ class TripWaysController < ApplicationController
   before_action :set_trip_way, only: [:show, :edit, :update, :destroy]
 
   def index
-    @trip_ways = Trip_way.all
+    @trip_ways = TripWay.all
   end
 
   def new
@@ -49,7 +49,6 @@ class TripWaysController < ApplicationController
     @trip_way = Trip_way.find(params[:id])
   end
 
-  def trip_params
     params.require(:trip_way).permit(:title, :evaluation, :description, :start_date, :finish_date, :number_of_people, :trip_id)
   end
 
