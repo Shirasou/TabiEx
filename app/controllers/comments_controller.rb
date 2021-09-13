@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
 		@comment.trip_id = @trip.id
 		@comment.user_id = current_user.id
 		if @comment.save
+			@trip.create_notification_comment!(current_user, @comment.id)
   		redirect_to trip_path(@trip.id)
 		else
 		  render 'trips/show'

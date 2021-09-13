@@ -67,9 +67,9 @@ ActiveRecord::Schema.define(version: 2021_09_11_072636) do
     t.integer "visiter_id"
     t.integer "visited_id"
     t.integer "comment_id"
-    t.integer "trip_like_id"
+    t.integer "trip_id"
     t.string "action"
-    t.boolean "check"
+    t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -110,7 +110,6 @@ ActiveRecord::Schema.define(version: 2021_09_11_072636) do
   create_table "trip_way_relations", force: :cascade do |t|
     t.integer "trip_id"
     t.integer "trip_way_id"
-    t.integer "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

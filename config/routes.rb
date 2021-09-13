@@ -20,5 +20,7 @@ Rails.application.routes.draw do
   resources :tags do
     get 'trips', to: 'trips#search'
   end
+  resources :notifications, only: [:index]
+    delete 'notifications' => 'notifications#all_destroy', as: 'notifications_all_destroy'
   get '/search', to: 'searches#search'
 end
