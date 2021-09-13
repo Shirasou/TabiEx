@@ -1,2 +1,0 @@
-class TripWayRelationsController < ApplicationController
-end
