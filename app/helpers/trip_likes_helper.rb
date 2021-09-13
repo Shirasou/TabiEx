@@ -1,2 +1,0 @@
-module TripLikesHelper
-end
