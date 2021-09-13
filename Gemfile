@@ -68,7 +68,4 @@ gem 'pry-byebug'
 gem 'kaminari'
 gem 'rubocop-airbnb'
 gem 'dotenv-rails'
-group :production do
-  gem 'mysql2'
-end
 gem 'cocoon'
