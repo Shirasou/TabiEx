@@ -5,7 +5,8 @@ class TripLikesController < ApplicationController
     @trip = Trip.find(params[:trip_id])
     trip_like = @trip.trip_likes.new(user_id: current_user.id)
     trip_like.save
-    redirect_to request.referer
+    @trip.create_notification_by(current_user)
+    redirect_to request.referrer
   end
 
   def destroy
