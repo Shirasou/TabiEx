@@ -1,10 +1,17 @@
 class CategoriesController < ApplicationController
   def create
+    @category = Category.new(category_params)
+    @category.save
   end
 
-  def edit
+  def show
+    @category = Category.find(params[:id])
+    @trips = @category.trips
   end
 
-  def update
+  private
+
+  def category_params
+    params.require(:category).permit(:name)
   end
 end

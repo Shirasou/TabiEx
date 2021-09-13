@@ -67,7 +67,7 @@ class TripsController < ApplicationController
   end
 
   def trip_params
-    params.require(:trip).permit(:date_time, :city, :title, :description, :evaluation, images: [])
+    params.require(:trip).permit(:date_time, :city, :title, :description, :evaluation, :category_id, images: [])
   end
 
   def ensure_correct_user
