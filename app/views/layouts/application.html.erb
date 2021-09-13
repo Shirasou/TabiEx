@@ -21,23 +21,31 @@
     <nav>
       <ul class="nav-list">
         <% if user_signed_in? %>
-          <li class="nav-list-item"><%= link_to "My Page", user_path(current_user) %></li>
-          <li class="nav-list-item"><%= link_to "Users", users_path %></li>
-          <li class="nav-list-item"><%= link_to "Trips", trips_path %></li>
-          <li class="nav-list-item"><%= link_to "Trip_Ways", trip_ways_path %></li>
-          <li class="nav-list-item"><%= link_to "Create Trip", new_trip_path %></li>
-          <li class="nav-list-item"><%= link_to "Create Trip Way", new_trip_way_path %></li>
-          <li class="nav-list-item"><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+          <li><a><%= link_to "My Page", user_path(current_user) %></a></li>
+          <li><a><%= link_to "Users", users_path %></a></li>
+          <li><a><%= link_to "Trips", trips_path %></a></li>
+          <li><a><%= link_to "Trip_Ways", trip_ways_path %></a></li>
+          <li><a><%= link_to "Create Trip", new_trip_path %></a></li>
+          <li><a><%= link_to "Create Trip Way", new_trip_way_path %></a></li>
+          <li class="has-child"><a>Category</a>
+            <ul>
+            <% @categories.each do |category| %>
+            <li><a><%= link_to category.name, category_path(category)%></a></li>
+            <% end %>
+            </ul>
+          </li>
+          <li><a><%= link_to "Log out", destroy_user_session_path, method: :delete %></a></li>
           <% if unchecked_notifications.any? %>
             <i class="fa fa-circle" style="color: gold;"></i>
           <% end %>
           <li>
-              <%= link_to "NOTICE", notifications_path %>
+              <a><%= link_to "NOTICE", notifications_path %></a>
           </li>
         <% else %>
-          <li class="nav-list-item"><%= link_to "Log in", new_user_session_path %></li>
-          <li class="nav-list-item"><%= link_to "Trips", trips_path %></li>
-          <li class="nav-list-item"><%= link_to "Sign up", new_user_registration_path %></li>
+          <li><a><%= link_to "Log in", new_user_session_path %></a></li>
+          <li><a><%= link_to "Trips", trips_path %></a></li>
+          <li><a><%= link_to "Trip_Ways", trip_ways_path %></a></li>
+          <li><a><%= link_to "Sign up", new_user_registration_path %></a></li>
         <% end %>
       </ul>
     </nav>
