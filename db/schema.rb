@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 2021_09_04_091835) do
     t.datetime "remember_created_at"
     t.string "name", null: false
     t.integer "sex", null: false
-    t.text "introduction", null: false
-    t.datetime "birth_at", null: false
+    t.text "introduction"
+    t.date "birth_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
