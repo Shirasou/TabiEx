@@ -18,6 +18,11 @@
   </div>
 
   <div>
+  <h4>国</h4>
+  <%= f.collection_select :category_id, Category.all, :id, :name, :include_blank => "選択してください" %>
+  </div>
+
+  <div>
   <h4>都市</h4>
   <%= f.text_field :city %>
   </div>

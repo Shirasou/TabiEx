@@ -22,5 +22,6 @@ Rails.application.routes.draw do
   end
   resources :notifications, only: [:index]
     delete 'notifications' => 'notifications#all_destroy', as: 'notifications_all_destroy'
+  resources :categories, only: [:create, :show]
   get '/search', to: 'searches#search'
 end
