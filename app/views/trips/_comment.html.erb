@@ -1,0 +1,18 @@
+<table>
+  <% trip.comments.each do |comment| %>
+    <% comment_user = comment.user %>
+    <tr>
+    	<td>
+    	  <%= comment_user.name %>
+    	</td>
+    	<td><%= comment.comment %></td>
+    	<% if current_user == comment_user %>
+      	<td><%= link_to 'Destroy', trip_comment_path(comment.trip_id, comment.id), method: :delete %></td>
+    	<% end %>
+    </tr>
+  <% end %>
+</table>
+<%= form_with model:[trip,comment], local: true do |f| %>
+  <%= f.text_area :comment %><br>
+  <%= f.submit '送信'%>
+<% end %>
