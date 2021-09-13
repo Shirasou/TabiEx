@@ -1,0 +1,42 @@
+<h1>投稿詳細</h1>
+  <p>タイトル：<%= @trip_way.title %></p>
+  <p>評価：
+  <span class="trip-evaluation" data-score="<%= @trip_way.evaluation %>"></span>
+  </p>
+  <p>出発日：<%= @trip_way.start_date %></p>
+  <p>帰宅日：<%= @trip_way.finish_date %></p>
+  <p>人数：<%= @trip_way.number_of_people %></p>
+  <p>説明：<%= @trip_way.description %></p>
+  <% trip_count = 1 %>
+  <% @trip_way.trip_way_relations.each do |f| %>
+  <div>
+    <%= trip_count %>
+    <% f.trip.images.each do |image| %>
+    <%= image_tag image.variant(resize: "150x150") %>
+    <% end %>
+    <p>評価：
+    <span class="trip-evaluation" data-score="<%= f.trip.evaluation %>"></span>
+    </p>
+    <p>タイトル：<%= f.trip.title %></p>
+    <p>都市：<%= f.trip.city %></p>
+    <p>時間帯：<%= f.trip.date_time %></p>
+    <p>説明：<%= f.trip.description %></p>
+    <p><%= link_to "Show", trip_path(f.trip.id) %></p>
+  </div>
+  <% trip_count = trip_count + 1 %>
+  <% end %>
+
+<% if @trip_way.user == current_user %>
+<p><%= link_to 'Edit', edit_trip_way_path(@trip_way) %></p>
+<p><%= link_to 'Destroy', trip_way_path(@trip_way), method: :delete, data: { confirm: '本当に消しますか？' } %></p>
+<% end %>
+
+<script>
+  $('.trip-evaluation').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+</script>
