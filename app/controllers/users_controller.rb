@@ -2,9 +2,14 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:edit, :update]
 
+  def index
+    @users = User.all
+  end
+
   def show
     @user = User.find(params[:id])
     @trips = @user.trips
+    @trip_ways = @user.trip_ways
     @currentUserEntry = Entry.where(user_id: current_user.id)
     @userEntry = Entry.where(user_id: @user.id)
     unless @user.id == current_user.id
