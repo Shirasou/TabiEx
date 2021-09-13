@@ -1,2 +1,0 @@
-class TripLike < ApplicationRecord
-end
