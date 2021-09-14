@@ -1,4 +1,5 @@
 <% trips.each do |trip| %>
+<div id="trip_<%= trip.id %>">
 <div>
   <% trip.images.each do |image| %>
   <%= image_tag image.variant(resize: "150x150") %>
@@ -20,6 +21,7 @@
 
   <p>説明：<%= trip.description %></p>
   <p><%= link_to "Show", trip_path(trip) %></p>
+</div>
 </div>
 <% end %>
 <script>

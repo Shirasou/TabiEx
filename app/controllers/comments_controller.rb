@@ -6,11 +6,9 @@ class CommentsController < ApplicationController
 		@comment = Comment.new(comment_params)
 		@comment.trip_id = @trip.id
 		@comment.user_id = current_user.id
-		if @comment.save
+		unless @comment.save
 			@trip.create_notification_comment!(current_user, @comment.id)
-  		redirect_to trip_path(@trip.id)
-		else
-		  render 'trips/show'
+		  render 'error'
 		end
   end
 
@@ -18,7 +16,6 @@ class CommentsController < ApplicationController
     @trip = Trip.find(params[:trip_id])
   	comment = @trip.comments.find(params[:id])
 		comment.destroy
-		redirect_to request.referer
   end
 
   private
