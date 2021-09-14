@@ -1,4 +1,5 @@
 <h1>投稿詳細</h1>
+<div id="trip_<%= @trip.id %>">
 <div>
   <% @trip.images.each do |image| %>
   <%= image_tag image.variant(resize: "150x150") %>
@@ -19,18 +20,23 @@
   <% end %>
   </p>
   <p>説明：<%= @trip.description %></p>
-  <p>コメント数: <%= @trip.comments.count %></p>
-  <p class="favorite-btn"><%= render "trip_likes/like-btn", trip: @trip %></p>
+  <p class="comments-count">コメント数: <%= @trip.comments.count %></p>
+  <p class="like-btn"><%= render "trip_likes/like-btn", trip: @trip %></p>
 </div>
 
 <% if @trip.user == current_user %>
 <p><%= link_to 'Edit', edit_trip_path(@trip) %></p>
 <p><%= link_to 'Destroy', trip_path(@trip), method: :delete, data: { confirm: '本当に消しますか？' } %></p>
 <% end %>
-
-<div>
-  <%= render 'trips/comment', trip: @trip,comment: @comment%>
 </div>
+
+<div class="comments">
+  <%= render 'comments/index', trip: @trip%>
+</div>
+<%= form_with model:[@trip,@comment] do |f| %>
+  <%= f.text_area :comment %><br>
+  <%= f.submit '送信'%>
+<% end %>
 
 <script>
   $('.trip-evaluation').raty({

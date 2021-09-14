@@ -52,6 +52,10 @@
     <% if user_signed_in? %>
       <%= render 'layouts/search' %>
     <% end %>
+    <div class="body">
+      <div class="container">
     <%= yield %>
+    </div>
+    </div>
   </body>
 </html>
