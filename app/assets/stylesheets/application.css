@@ -20,125 +20,125 @@
   box-sizing: border-box;
 }
 
-header {
-  width: 90%;
-  padding: 15px 0;
-  margin: 0 auto;
-  text-align: center;
-  position: relative;
+body {
+  padding-left: 2.5%;
+  padding-right: 2.5%;
 }
 
-.heading {
-  font-size: 32px;
+img {
+  max-width: 100%;
+  vertical-align: bottom;
 }
-
-nav{
-  background:#333;
-  color:#fff;
-  text-align: center;
-}
-/*ナビゲーションを横並びに*/
-nav ul{
+li {
   list-style: none;
+}
+
+header {
+  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  position: fixed;
+  z-index: 10;
+  background-color: #fff;
 }
-/*2階層目以降は横並びにしない*/
-nav ul ul{
+nav {
   display: block;
-}
-
-/*下の階層のulや矢印の基点にするためliにrelativeを指定*/
-nav ul li{
-  position: relative;
-}
-
-/*ナビゲーションのリンク設定*/
-nav ul li a{
-  display: block;
-  text-decoration: none;
-  color: #999;
-  padding:20px 35px;
-  transition:all .3s;
-}
-
-nav ul li li a{
-  padding:10px 35px;
-}
-
-nav ul li a:hover{
-  color:#fff;
-}
-
-/*==矢印の設定*/
-
-/*2階層目を持つliの矢印の設定*/
-nav ul li.has-child::before{
-  content:'';
-  position: absolute;
-  left:15px;
-  top:25px;
-  width:6px;
-  height:6px;
-  border-top: 2px solid #999;
-    border-right:2px solid #999;
-    transform: rotate(135deg);
-}
-
-/*3階層目を持つliの矢印の設定*/
-nav ul ul li.has-child::before{
-  content:'';
-  position: absolute;
-  left:6px;
-  top:17px;
-  width:6px;
-  height:6px;
-    border-top: 2px solid #fff;
-    border-right:2px solid #fff;
-    transform: rotate(45deg);
-}
-
-/*== 2・3階層目の共通設定 */
-
-/*下の階層を持っているulの指定*/
-nav li.has-child ul{
-    /*絶対配置で位置を指定*/
-  position: absolute;
-  left:0;
-  top:62px;
-  z-index: 4;
-    /*形状を指定*/
-  background:#28BFE7;
-  width:180px;
-    /*はじめは非表示*/
-  visibility: hidden;
+  position: fixed;
+  top: 0;
+  left: -300px;
+  bottom: 0;
+  width: 300px;
+  color: #fff;
+  padding: 60px 25px;
+  background-color: #121212;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  transition: all .5s;
+  z-index: 20;
   opacity: 0;
-    /*アニメーション設定*/
-  transition: all .3s;
 }
-
-/*hoverしたら表示*/
-nav li.has-child:hover > ul,
-nav li.has-child ul li:hover > ul,
-nav li.has-child:active > ul,
-nav li.has-child ul li:active > ul{
-  visibility: visible;
+nav a {
+  color: #fff;
+}
+.open nav {
+  left: 0;
   opacity: 1;
 }
-
-/*ナビゲーションaタグの形状*/
-nav li.has-child ul li a{
-  color: #fff;
-  border-bottom:solid 1px rgba(255,255,255,0.6);
+nav ul {
+  margin: 0;
+  padding: 0;
 }
-
-nav li.has-child ul li:last-child a{
-  border-bottom:none;
+nav ul.nav-menu {
+  margin-bottom: 60px;
+  border-top: solid 1px #fff;
 }
-
-nav li.has-child ul li a:hover,
-nav li.has-child ul li a:active{
-  background:#3577CA;
+nav ul.nav-menu li {
+  position: relative;
+  margin: 0;
+  padding: 20px 0;
+  border-bottom: solid 1px #fff;
+}
+.toggle_btn {
+  display: block;
+  position: fixed;
+  top: 25px;
+  right: 45px;
+  width: 30px;
+  height: 30px;
+  transition: all .5s;
+  cursor: pointer;
+  z-index: 20;
+}
+.toggle_btn span {
+  display: block;
+  position: absolute;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  background-color: #333;
+  border-radius: 4px;
+  transition: all .5s;
+}
+.toggle_btn span:nth-child(1) {
+  top: 4px;
+}
+.toggle_btn span:nth-child(2) {
+  top: 14px;
+}
+.toggle_btn span:nth-child(3) {
+  bottom: 4px;
+}
+.open .toggle_btn span {
+  background-color: #fff;
+}
+.open .toggle_btn span:nth-child(1) {
+  -webkit-transform: translateY(10px) rotate(-315deg);
+  transform: translateY(10px) rotate(-315deg);
+}
+.open .toggle_btn span:nth-child(2) {
+  opacity: 0;
+}
+.open .toggle_btn span:nth-child(3) {
+  -webkit-transform: translateY(-10px) rotate(315deg);
+  transform: translateY(-10px) rotate(315deg);
+}
+#mask {
+  display: none;
+  transition: all .5s;
+}
+.open #mask {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: .8;
+  z-index: 10;
+  cursor: pointer;
 }
 
 

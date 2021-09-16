@@ -6,20 +6,22 @@
     <%= csp_meta_tag %>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300&display=swap" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <header>
-      <h1 class="heading">
-        <a>
-          TabiEx
-        </a>
+      <h1 class="header_title">
+        Logo
       </h1>
-    </header>
+
     <nav>
-      <ul class="nav-list">
+      <ul class="nav-menu">
         <% if user_signed_in? %>
           <li><a><%= link_to "My Page", user_path(current_user) %></a></li>
           <li><a><%= link_to "Users", users_path %></a></li>
@@ -29,12 +31,13 @@
           <li><a><%= link_to "Create Trip Way", new_trip_way_path %></a></li>
           <li class="has-child"><a>Category</a>
             <ul>
-            <% @categories.each do |category| %>
-            <li><a><%= link_to category.name, category_path(category)%></a></li>
-            <% end %>
+            <%# @categories.each do |category| %>
+            <li><a><%#= link_to category.name, category_path(category)%></a></li>
+            <%# end %>
             </ul>
           </li>
           <li><a><%= link_to "Log out", destroy_user_session_path, method: :delete %></a></li>
+          <li><%= render 'layouts/search' %></li>
           <% if unchecked_notifications.any? %>
             <i class="fa fa-circle" style="color: gold;"></i>
           <% end %>
@@ -49,13 +52,19 @@
         <% end %>
       </ul>
     </nav>
-    <% if user_signed_in? %>
-      <%= render 'layouts/search' %>
-    <% end %>
-    <div class="body">
+
+    <div class="toggle_btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div id="mask"></div>
+    </header>
+
       <div class="container">
+        <main>
     <%= yield %>
-    </div>
+    </main>
     </div>
   </body>
 </html>
