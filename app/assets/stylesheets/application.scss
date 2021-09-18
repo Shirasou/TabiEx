@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+ @import "bootstrap";
 
 * {
   margin: 0;
@@ -23,15 +24,74 @@
 body {
   padding-left: 2.5%;
   padding-right: 2.5%;
+  font-family: 'Raleway', sans-serif;
+}
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
 }
 
-img {
-  max-width: 100%;
-  vertical-align: bottom;
-}
+
 li {
   list-style: none;
 }
+main {
+  padding-top: 8.5rem;
+}
+ol {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -.15625rem;
+  padding-top: 4.86vw;
+}
+ol li{
+  width: 100%;
+  position: relative;
+  margin: .69vw;
+}
+.title {
+  margin-bottom: .85em;
+  line-height: 1.1;
+  margin-left: 2.63%;
+  font-size: 40px;
+  letter-spacing: -.02em;
+  font-weight: inherit;
+}
+
+.theme{
+  opacity: .8;
+  width: 36.84%;
+  margin-right: 7.89%;
+  margin-left: auto;
+  font-size: 12px;
+}
+.top_image img {
+  object-fit: cover;
+  width: 100%;
+  height: 600px;
+}
+.col-md-8 p {
+  width: 140%;
+  color: #fff;
+  padding: 50px 0;
+  text-align: center;
+  position: absolute;
+  bottom: -50px;
+  font-size: 100px;
+}
+
+.col-md-4 p {
+  width: 110%;
+  color: #fff;
+  padding: 50px 0;
+  text-align: center;
+  position: absolute;
+  bottom: -50px;
+  font-size: 100px;
+}
+
 
 header {
   width: 100%;
@@ -51,7 +111,6 @@ nav {
   width: 300px;
   color: #fff;
   padding: 60px 25px;
-  background-color: #121212;
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -61,6 +120,7 @@ nav {
 }
 nav a {
   color: #fff;
+  text-decoration: none;
 }
 .open nav {
   left: 0;
@@ -78,7 +138,6 @@ nav ul.nav-menu li {
   position: relative;
   margin: 0;
   padding: 20px 0;
-  border-bottom: solid 1px #fff;
 }
 .toggle_btn {
   display: block;
@@ -140,6 +199,16 @@ nav ul.nav-menu li {
   z-index: 10;
   cursor: pointer;
 }
+
+.top {
+  width: 100%;
+  padding: 100px 0 50px 0;
+}
+
+
+
+
+
 
 
 section.typeB{

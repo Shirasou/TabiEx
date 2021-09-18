@@ -6,9 +6,7 @@
     <%= csp_meta_tag %>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300&display=swap" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -16,44 +14,38 @@
 
   <body>
     <header>
-      <h1 class="header_title">
-        Logo
+      <h1 class="header_title" style="font-family: 'Comfortaa', cursive;">
+        <%= link_to "TabiEx", root_path, :style => "color: black; text-decoration: none;" %>
       </h1>
 
-    <nav>
-      <ul class="nav-menu">
-        <% if user_signed_in? %>
-          <li><a><%= link_to "My Page", user_path(current_user) %></a></li>
-          <li><a><%= link_to "Users", users_path %></a></li>
-          <li><a><%= link_to "Trips", trips_path %></a></li>
-          <li><a><%= link_to "Trip_Ways", trip_ways_path %></a></li>
-          <li><a><%= link_to "Create Trip", new_trip_path %></a></li>
-          <li><a><%= link_to "Create Trip Way", new_trip_way_path %></a></li>
-          <li class="has-child"><a>Category</a>
-            <ul>
-            <%# @categories.each do |category| %>
-            <li><a><%#= link_to category.name, category_path(category)%></a></li>
-            <%# end %>
-            </ul>
-          </li>
-          <li><a><%= link_to "Log out", destroy_user_session_path, method: :delete %></a></li>
-          <li><%= render 'layouts/search' %></li>
-          <% if unchecked_notifications.any? %>
-            <i class="fa fa-circle" style="color: gold;"></i>
-          <% end %>
-          <li>
-              <a><%= link_to "NOTICE", notifications_path %></a>
-          </li>
-        <% else %>
-          <li><a><%= link_to "Log in", new_user_session_path %></a></li>
-          <li><a><%= link_to "Trips", trips_path %></a></li>
-          <li><a><%= link_to "Trip_Ways", trip_ways_path %></a></li>
-          <li><a><%= link_to "Sign up", new_user_registration_path %></a></li>
-        <% end %>
-      </ul>
-    </nav>
+      <nav>
+        <ul class="nav-menu">
 
-    <div class="toggle_btn">
+          <% if user_signed_in? %>
+            <li><%= link_to "My Page", user_path(current_user) %></li>
+            <li><%= link_to "Users", users_path %></li>
+            <li><%= link_to "Trips", trips_path %></li>
+            <li><%= link_to "Trip_Ways", trip_ways_path %></li>
+            <li><%= link_to "Create Trip", new_trip_path %></li>
+            <li><%= link_to "Create Trip Way", new_trip_way_path %></li>
+            <% if unchecked_notifications.any? %>
+              <i class="fa fa-circle" style="color: gold;"></i>
+            <% end %>
+            <li><%= link_to "NOTICE", notifications_path %></li>
+            <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+            <li><%= render 'layouts/search' %></li>
+
+          <% else %>
+            <li><%= link_to "Log in", new_user_session_path %></li>
+            <li><%= link_to "Trips", trips_path %></li>
+            <li><%= link_to "Trip_Ways", trip_ways_path %></li>
+            <li><%= link_to "Sign up", new_user_registration_path %></li>
+
+          <% end %>
+        </ul>
+      </nav>
+
+      <div class="toggle_btn my-auto">
         <span></span>
         <span></span>
         <span></span>
@@ -61,10 +53,12 @@
       <div id="mask"></div>
     </header>
 
-      <div class="container">
-        <main>
-    <%= yield %>
+
+    <main>
+      <%= yield %>
     </main>
-    </div>
+    <footer>
+
+    </footer>
   </body>
 </html>
