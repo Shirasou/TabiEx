@@ -1,1 +1,87 @@
-<h1>トップページ</h1>
+<div>
+  <h1 class="title">
+    Let's Share Your Trips and </br>
+    Make Us Happy.
+  </h1>
+  <p class="theme">
+    コロナ禍で旅行できない皆様が旅の思い出の詳細な記録として活用していただきたい。</bt>
+    また、共有することでアフターコロナの時に旅の新たなプラン作成にお役立てください。
+  </p>
+</div>
+<div class="container-fluid">
+  <div class="row mx-auto my-auto">
+    <div class="col-md-8 top_image pt-3 pb-3">
+      <%= link_to category_path(@category = 2), target: "_blank" do%>
+        <%= image_tag "America.jpg", class: "rounded-1" %>
+        <p>Amarica</p>
+      <% end %>
+    </div>
+    <div class="col-md-4 top_image pt-3 pb-3">
+      <%= link_to category_path(@category = 4), target: "_blank" do%>
+        <%= image_tag "France.jpg", class: "rounded-1" %>
+        <p>France</p>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row mx-auto my-auto">
+    <div class="col-md-4 top_image pt-3 pb-3">
+      <%= link_to category_path(@category = 3), target: "_blank" do%>
+        <%= image_tag "UK.jpg", class: "rounded-1" %>
+        <p>England</p>
+      <% end %>
+    </div>
+    <div class="col-md-4 top_image pt-3 pb-3">
+      <%= link_to category_path(@category = 5), target: "_blank" do%>
+        <%= image_tag "Italy.jpg", class: "rounded-1" %>
+        <p>Italy</p>
+      <% end %>
+    </div>
+    <div class="col-md-4 top_image pt-3 pb-3">
+      <%= link_to category_path(@category = 27), target: "_blank" do%>
+        <%= image_tag "Chaina.jpg", class: "rounded-1" %>
+        <p>Chaina</p>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row mx-auto my-auto">
+    <div class="col-md-8 top_image pt-3 pb-3">
+      <%= link_to category_path(@category = 1), target: "_blank" do%>
+        <%= image_tag "Japan.jpg", class: "rounded-1" %>
+        <p>Japan</p>
+      <% end %>
+    </div>
+    <div class="col-md-4 top_image pt-3 pb-3">
+      <%= link_to category_path(@category = 32), target: "_blank" do%>
+        <%= image_tag "Singapore.jpg", class: "rounded-1" %>
+        <p>Singapore</p>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row mx-auto my-auto">
+    <div class="col-md-4 top_image pt-3 pb-3">
+      <%= link_to category_path(@category = 39), target: "_blank" do%>
+        <%= image_tag "Australia.jpg", class: "rounded-1" %>
+        <p>Australia</p>
+      <% end %>
+    </div>
+    <div class="col-md-4 top_image pt-3 pb-3">
+      <%= link_to category_path(@category = 31), target: "_blank" do%>
+        <%= image_tag "Thailand.jpg", class: "rounded-1" %>
+        <p>Thailand</p>
+      <% end %>
+    </div>
+    <div class="col-md-4 top_image pt-3 pb-3">
+      <%= link_to category_path(@category = 30), target: "_blank" do%>
+        <%= image_tag "Vietnam.jpg", class: "rounded-1" %>
+        <p>Vietnam</p>
+      <% end %>
+    </div>
+  </div>
+</div>
+
