@@ -48,6 +48,8 @@ class TripWaysController < ApplicationController
 
   def set_trip_way
     @trip_way = TripWay.find(params[:id])
+    @trip_way_relation = @trip_way.trip_way_relation
+    @trips = @trip_way_relation.trips
   end
 
   def trip_way_params
