@@ -1,14 +1,20 @@
 <%= form_with model: @trip, local:true do |f| %>
- <div class="images-field">
-  <h4>画像</h4>
-  <%= f.file_field :images, multiple: true %>
-  <% if @trip.images.present? %>
-    <p>現在登録されている画像（削除するものはチェックしてください）</p>
-    <% @trip.images.each do |image| %>
-      <%= f.check_box :image_ids, {multiple: true}, image.id, false %>
-      <%= image_tag image.variant(resize: "150x150") %> <br>
+ <h2>投稿フォーム</h2>
+  <div class="images-field">
+    <div class="field">
+      <h4>画像</h4>
+      <%= f.file_field :images, multiple: true, class: "file-input" %>
+    </div>
+    <% if @trip.images.attached? %>
+      <% @trip.images.each do |image| %>
+      <div class="image-box">
+        <%= image_tag image.variant(resize: "150x150") %>
+        <%= f.hidden_field :images , name: "trip[images][]", value: "#{image.blob.id}", style: "display: none;", class: "trip-images-input" %>
+          <%= file_field "edit-image","" , class: "edit-image-file-input file-input", style: "display: none;"%>
+          <%= link_to "Delete", "", class: "btn-delete" %>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
   </div>
 
   <div>

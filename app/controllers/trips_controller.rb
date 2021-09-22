@@ -1,7 +1,7 @@
 class TripsController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
-  before_action :set_trip, only: [:show, :edit, :update, :destroy]
+  before_action :set_trip, only: [ :show, :edit, :update, :destroy]
 
   def index
     @tag_lists = Tag.all
@@ -27,6 +27,7 @@ class TripsController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
     @comment = Comment.new
   end
 
@@ -40,14 +41,9 @@ class TripsController < ApplicationController
   end
 
   def update
-    if params[:trip][:image_ids]
-      params[:trip][:image_ids].each do |image_id|
-        image = @trip.images.find(image_id)
-        image.purge
-      end
-    end
-    if @trip.update_attributes(trip_params)
-      redirect_to trips_path, notice: "You have updated book successfully."
+   @trip.images.detach #一旦、すべてのimageの紐つけを解除
+    if @trip.update(trip_params)
+      redirect_to @item, notice: 'Item was successfully updated.'
     else
       render :edit
     end
@@ -59,15 +55,26 @@ class TripsController < ApplicationController
     redirect_to trips_path
   end
 
+  def upload_image
+      @image_blob = create_blob(params[:image])
+      respond_to do |format|
+        format.json { @image_blob }
+      end
+  end
+
   private
 
   def set_trip
-    @trip = Trip.find(params[:id])
+    @trip = Trip.with_attached_images.find(params[:id])
     @trip_tags = @trip.tags
   end
 
   def trip_params
-    params.require(:trip).permit(:date_time, :city, :title, :description, :evaluation, :category_id, images: [])
+    params.require(:trip).permit(:date_time, :city, :title, :description, :evaluation, :category_id).merge(images: uploaded_images)
+  end
+
+  def uploaded_images
+    params[:trip][:images].map{|id| ActiveStorage::Blob.find(id)} if params[:trip][:images]
   end
 
   def ensure_correct_user
@@ -76,5 +83,12 @@ class TripsController < ApplicationController
     unless @user == current_user
       redirect_to user_path(current_user)
     end
+  end
+
+  def create_blob(uploading_file)
+    ActiveStorage::Blob.create_after_upload! \
+      io: uploading_file.open,
+      filename: uploading_file.original_filename,
+      content_type: uploading_file.content_type
   end
 end
