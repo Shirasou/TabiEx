@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resource :trip_likes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
   end
+  post 'trips/upload_image' => 'trips#upload_image', defaults: { format: :json }
   resources :users, only: [:index, :show, :edit, :update] do
   	resource :relationships, only: [:create, :destroy]
   	get 'followings' => 'relationships#followings', as: 'followings'

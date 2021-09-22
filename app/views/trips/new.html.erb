@@ -1,53 +1,91 @@
-<h1>投稿フォーム</h1>
-<%= form_with model: @trip, local:true do |f| %>
+<div class="container-fluid ly_main">
+    <div class="row justify-content-md-center">
+      <% if @trip.errors.any? %>
+        <%= @trip.errors.count %>件のエラーが発生しました
+        <% @trip.errors.full_messages.each do |message| %>
+          <%= message %>
+        <% end %>
+      <% end %>
+
+    <div class="container">
+    <div class="row justify-content-md-center">
+<%= form_with model: @trip, class: "form-input", local:true do |f| %>
+  <h2 class="text-center">Create Trip</h2>
+  <div class="col-md-auto">
   <div class="images-field">
-    <div class="field">
-  <h4>画像</h4>
-  <%= f.file_field :images, multiple: true %>
+    <div class="field text-left">
+      <h5>Image</h5>
+      <%= f.file_field :images, multiple: true, class: "form-control-file" %>
+    </div>
+    <% if @trip.images.attached? %>
+      <% @trip.images.each do |image| %>
+      <div class="image-box">
+        <%= image_tag image %>
+        <%= f.hidden_field :images , name: "trip[images][]", value: "#{image.blob.id}", style: "display: none;", class: "trip-images-input" %>
+          <%= file_field "edit-image","" , class: "edit-image-file-input file-input", style: "display: none;"%>
+          <%= link_to "Delete", "", class: "btn-delete" %>
+        </div>
+      <% end %>
+    <% end %>
   </div>
+  </div>
+  </div>
+  </div>
+  <div class="container">
+<div class="row justify-content-md-center">
+      <div class="col-md-4">
+  <div>
+    <h5>Evaluation</h5>
+  　<span id="evaluation_stars"></span>
   </div>
 
   <div>
-  <h4>評価</h4>
-　<span id="evaluation_stars"></span>
+  <h5>Title</h5>
+  <%= f.text_field :title, class: "form-control" %>
   </div>
 
   <div>
-  <h4>タイトル</h4>
-  <%= f.text_field :title %>
+  <h5>Country</h5>
+  <%= f.collection_select :category_id, Category.all, :id, :name, {:include_blank => "選択してください"}, class: "form-control" %>
   </div>
 
   <div>
-  <h4>国</h4>
-  <%= f.collection_select :category_id, Category.all, :id, :name, :include_blank => "選択してください" %>
+  <h5>City</h5>
+  <%= f.text_field :city, class: "form-control" %>
   </div>
 
   <div>
-  <h4>都市</h4>
-  <%= f.text_field :city %>
+  <h5>Date</h5>
+  <%= f.time_field :date_time, class: "form-control" %>
   </div>
 
   <div>
-  <h4>時刻</h4>
-  <%= f.time_field :date_time %>
+  <h5>Tag</h5>
+  <%= f.text_field :name, class: "form-control" %>
+  </div>
   </div>
 
+<div class="col-md-4">
   <div>
-  <h4>タグ</h4>
-  <%= f.text_field :name %>
+  <h5>Description</h5>
+  <%= f.text_area :description, class: "form-control" %>
+  </div>
+  <div class="text-right mt-3">
+  <%= f.submit '投稿', class: "btn btn-outline-primary" %>
+  </div>
   </div>
 
-  <div>
-  <h4>説明</h4>
-  <%= f.text_area :description %>
-  </div>
 
-  <%= f.submit '投稿' %>
 <% end %>
+</div>
+</div>
+</div>
+</div>
+
 
 <script>
   $('#evaluation_stars').raty({
-    size: 36,
+    size: 30,
     starOff: "<%= asset_path('star-off.png') %>",
     starOn: "<%= asset_path('star-on.png') %>",
     starHalf: "<%= asset_path('star-half.png') %>",
