@@ -1,10 +1,6 @@
 <% trip_ways.each do |trip_way| %>
   <p>タイトル：<%= trip_way.title %></p>
-  <p>評価：
-  <span class="trip-evaluation" data-score="<%= trip_way.evaluation %>"></span>
-  </p>
-  <p>出発日：<%= trip_way.start_date %></p>
-  <p>帰宅日：<%= trip_way.finish_date %></p>
+  <p><%= trip_way.start_date %>~<%= trip_way.finish_date %></p>
   <p>人数：<%= trip_way.number_of_people %></p>
   <p>説明：<%= trip_way.description %></p>
   <% trip_count = 1 %>
@@ -27,20 +23,3 @@
   <% end %>
   <p><%= link_to "Show", trip_way_path(trip_way) %></p>
 <% end %>
-<script>
-  $('.trip-evaluation').raty({
-    readOnly: true,
-    score: function() {
-      return $(this).attr('data-score');
-    },
-    path: '/assets/'
-  });
-
-  $('.trip-evaluation').raty({
-    readOnly: true,
-    score: function() {
-      return $(this).attr('data-score');
-    },
-    path: '/assets/'
-  });
-</script>

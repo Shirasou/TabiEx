@@ -19,22 +19,27 @@
   Category.create!(
   [
     {
-      name: '日本',
+      name: 'Japan',
+      image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/Japan.jpg")))
     },
     {
-      name: 'アメリカ',
+      name: 'America',
+      image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/America.jpg")))
     },
     {
-      name: 'イギリス',
+      name: 'Britain',
+      image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/UK.jpg")))
     },
     {
-      name: 'フランス',
+      name: 'France',
+      image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/France.jpg")))
     },
     {
-      name: 'イタリア',
+      name: 'Italy',
+      image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/Italy.jpg")))
     },
     {
-      name: 'スペイン',
+      name: 'Spain',
     },
     {
       name: 'ドイツ',

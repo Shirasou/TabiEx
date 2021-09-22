@@ -1,102 +1,41 @@
 <div id="trip_<%= @trip.id %>">
   <div>
-
-      <% @trip.images.each do |image| %>
-        <%= image_tag image, class: "show-img rounded-1 border-right border-top border-bottom border-dark border-3"%>
-      <% end %>
-
+    <% @trip.images.each do |image| %>
+      <%= image_tag image, class: "show-img border-right border-top border-bottom border-dark border-3"%>
+    <% end %>
   </div>
+
   <div class="row justify-content-md-center">
     <%= render 'users/card', user: @user %>
   </div>
 
   <div class="container-fluid mt-5 pt-3">
-    <div class="row">
-      <div class="col-md-6">
-        <div class="slider-for">
-        <% @trip.images.each do |image| %>
-        <%= image_tag image, class: "rounded", style: "width: 100%; height: 310px; object-fit: cover;"%>
-        <% end %>
-        </div>
-      <div class="slider-nav mt-2">
-        <% @trip.images.each do |image| %>
-        <%= image_tag image, class: "rounded", style: "width: 100%; height: 70px; object-fit: cover;"%>
-        <% end %>
-      </div>
-      </div>
-      <div class="col-md-4">
+    <%= render 'show', trip: @trip %>
 
-        <h4 class="trip_title text-sideway"><%= @trip.city %></h4>
-        <div class="pl-5 mt-3 pt-5 mb-3">
-          <div>
-            <%= @trip.date_time %>
-            <div class="ml-3">
-          <div class="pt-3">
-            <h2 class=""><%= @trip.title %></h2>
-          </div>
-          <p>
-            <span class="trip-evaluation" data-score="<%= @trip.evaluation %>"></span>
-          </p>
-          <p><%= @trip.category.name %></p>
-          <p><%= @trip.description %></p>
-          <p>
-            <% @trip_tags.each do |tag| %>
-              <span>
-                <%= link_to tag.name, tag_trips_path(tag_id: tag.id) %>/
-              </span>
-            <% end %>
-          </p>
-          <p class="like-btn">
-            <%= render "trip_likes/like-btn", trip: @trip %>
-          </p>
-          <p>コメント数: <%= @trip.comments.count %></p>
-
-          <div class="text-center pb-2">
-            <% if @trip.user == current_user %>
-              <p>
-                <%= link_to 'Edit', edit_trip_path(@trip), class: "btn btn-sm btn-outline-success" %>
-                <%= link_to 'Destroy', trip_path(@trip), method: :delete, data: { confirm: '本当に消しますか？' }, class: "ml-3 btn btn-sm btn-outline-danger" %>
-              </p>
-            <% end %>
-          </div>
-          </div>
-          </div>
-          </div>
-          </div>
-          </div>
-
-
-
-<div class="row justify-content-md-center pt-3">
+    <div class="row justify-content-md-center pt-3">
       <div class="col-md-5">
-            <h4>Commets</h4>
-            <div class="comments">
-            <%= render 'comments/index', trip: @trip%>
-            </div>
-          </div>
-          <div class="col-md-5"
+        <h4>Commets</h4>
+        <div class="comments">
+          <%= render 'comments/index', trip: @trip%>
+        </div>
+      </div>
+      <div class="col-md-5">
         <div class="form-group">
           <h4>Leave a Commet</h4>
           <%= form_with model:[@trip,@comment] do |f| %>
-          <div class="pr-3 pl-3">
-            <%= f.text_area :comment, class: "form-control" %><br>
-          </div>
-          <div class="text-right pr-3">
-            <%= f.submit '送信', class: "text-right btn-sm btn-outline-primary"%>
+            <div class="pr-3 pl-3">
+              <%= f.text_area :comment, class: "form-control" %><br>
+            </div>
+            <div class="text-right pr-3">
+              <%= f.submit '送信', class: "text-right btn-sm btn-outline-primary"%>
+            </div>
           <% end %>
-          </div>
         </div>
       </div>
-
-      </div>
-
-
-
-
-
-
-
+    </div>
+  </div>
 </div>
+
 <script>
   $('.trip-evaluation').raty({
     readOnly: true,

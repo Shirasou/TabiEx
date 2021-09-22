@@ -1,34 +1,37 @@
-<h1>投稿詳細</h1>
-  <p>タイトル：<%= @trip_way.title %></p>
-  <p>評価：
-  <span class="trip-evaluation" data-score="<%= @trip_way.evaluation %>"></span>
-  </p>
-  <p>出発日：<%= @trip_way.start_date %></p>
-  <p>帰宅日：<%= @trip_way.finish_date %></p>
-  <p>人数：<%= @trip_way.number_of_people %></p>
-  <p>説明：<%= @trip_way.description %></p>
-  <% trip_count = 1 %>
-  <% @trip_way.trip_way_relations.each do |f| %>
-  <div>
-    <%= trip_count %>
-    <% f.trip.images.each do |image| %>
-    <%= image_tag image.variant(resize: "150x150") %>
-    <% end %>
-    <p>評価：
-    <span class="trip-evaluation" data-score="<%= f.trip.evaluation %>"></span>
-    </p>
-    <p>タイトル：<%= f.trip.title %></p>
-    <p>都市：<%= f.trip.city %></p>
-    <p>時間帯：<%= f.trip.date_time %></p>
-    <p>説明：<%= f.trip.description %></p>
-    <p><%= link_to "Show", trip_path(f.trip.id) %></p>
+<div>
+  <%= image_tag "Japan.jpg", class: "show-img" %>
+</div>
+<div class="container">
+  <div class="row justify-content-md-center text-center">
+    <%= render 'users/card', user: @user %>
   </div>
-  <% trip_count = trip_count + 1 %>
-  <% end %>
+</div>
 
-<% if @trip_way.user == current_user %>
-<p><%= link_to 'Edit', edit_trip_way_path(@trip_way) %></p>
-<p><%= link_to 'Destroy', trip_way_path(@trip_way), method: :delete, data: { confirm: '本当に消しますか？' } %></p>
+<div class="container mt-5">
+  <div class="row justify-content-md-center text-center">
+    <div clas="col-md-5">
+      <h2><%= @trip_way.title %></h2>
+      <div>
+        <span class="trip-evaluation mr-1" data-score="<%= @trip_way.evaluation %>"></span>
+        人数:<%= @trip_way.number_of_people %>人
+      </div>
+      <p><%= @trip_way.start_date %><strong>~</strong><%= @trip_way.finish_date %></p>
+      <p class="description"><%= @trip_way.description %></p>
+      <% if @trip_way.user == current_user %>
+        <%= link_to 'Edit', edit_trip_way_path(@trip_way), class: "btn btn-sm btn-outline-success mr-1" %>
+        <%= link_to 'Destroy', trip_way_path(@trip_way), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-outline-danger" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% trip_count = 1 %>
+<% @trip_way.trip_way_relations.each do |f| %>
+  <div class="container-fluid mt-5 pt-3">
+    <div class="number"><%= trip_count %></div>
+    <%= render 'trips/show', trip: f.trip %>
+    <% trip_count = trip_count + 1 %>
+  </div>
 <% end %>
 
 <script>
