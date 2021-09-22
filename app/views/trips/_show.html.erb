@@ -1,0 +1,57 @@
+<div class="row justify-content-md-center">
+  <div class="col-md-6">
+    <div class="slider-for">
+      <% trip.images.each do |image| %>
+        <%= image_tag image, class: "rounded", style: "width: 100%; height: 500px; object-fit: cover;"%>
+      <% end %>
+    </div>
+    <div class="slider-nav mt-2">
+      <% trip.images.each do |image| %>
+        <%= image_tag image, class: "rounded", style: "width: 100%; height: 100px; object-fit: cover;"%>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <h4 class="trip_title text-sideway"><%= trip.city %></h4>
+    <div class="pl-5 mt-3 pt-5 mb-3">
+      <div>
+        <%= trip.date_time %>
+        <div class="ml-3">
+          <div class="pt-3">
+            <h2><%= trip.title %></h2>
+          </div>
+          <div>
+            <span class="trip-evaluation mr-1" data-score="<%= trip.evaluation %>"></span>
+            <%= trip.category.name %>
+          </div>
+
+          <p>
+            <% trip.tags.each do |tag| %>
+              <span>
+                <%= link_to tag.name, tag_trips_path(tag_id: tag.id) %>/
+              </span>
+            <% end %>
+          </p>
+          <p>
+            コメント数: <%= trip.comments.count %>
+            <span class="like-btn ml-3">
+              <%= render "trip_likes/like-btn", trip: trip %>
+            </span>
+          </p>
+          <p class="description mt-3"><%= trip.description %></p>
+
+
+          <div class="text-center pb-2">
+            <% if trip.user == current_user %>
+              <p>
+                <%= link_to 'Edit', edit_trip_path(trip), class: "btn btn-sm btn-outline-success" %>
+                <%= link_to 'Destroy', trip_path(trip), method: :delete, data: { confirm: '本当に消しますか？' }, class: "ml-3 btn btn-sm btn-outline-danger" %>
+              </p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

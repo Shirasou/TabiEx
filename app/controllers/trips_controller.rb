@@ -1,7 +1,7 @@
 class TripsController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
-  before_action :set_trip, only: [ :show, :edit, :update, :destroy]
+  before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
   def index
     @tag_lists = Tag.all
@@ -27,7 +27,7 @@ class TripsController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = @trip.user
     @comment = Comment.new
   end
 
@@ -43,7 +43,7 @@ class TripsController < ApplicationController
   def update
    @trip.images.detach #一旦、すべてのimageの紐つけを解除
     if @trip.update(trip_params)
-      redirect_to @item, notice: 'Item was successfully updated.'
+      redirect_to @trip, notice: 'Item was successfully updated.'
     else
       render :edit
     end
@@ -66,7 +66,6 @@ class TripsController < ApplicationController
 
   def set_trip
     @trip = Trip.with_attached_images.find(params[:id])
-    @trip_tags = @trip.tags
   end
 
   def trip_params

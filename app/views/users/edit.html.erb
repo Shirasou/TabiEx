@@ -1,6 +1,10 @@
 <h2>User info</h2>
 <%= form_with model: @user do |f| %>
-<div class="field">
+  <div class="field">
+    <h5>Image</h5>
+    <%= f.file_field :image, autofocus: true %>
+  </div>
+  <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name, autofocus: true %>
   </div>

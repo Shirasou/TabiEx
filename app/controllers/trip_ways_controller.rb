@@ -5,6 +5,7 @@ class TripWaysController < ApplicationController
 
   def index
     @trip_ways = TripWay.all
+    @tag_lists = Tag.all
   end
 
   def new
@@ -25,6 +26,7 @@ class TripWaysController < ApplicationController
   end
 
   def show
+    @user = @trip_way.user
   end
 
   def edit
@@ -48,8 +50,6 @@ class TripWaysController < ApplicationController
 
   def set_trip_way
     @trip_way = TripWay.find(params[:id])
-    @trip_way_relation = @trip_way.trip_way_relation
-    @trips = @trip_way_relation.trips
   end
 
   def trip_way_params
