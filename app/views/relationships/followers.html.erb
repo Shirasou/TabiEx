@@ -1,6 +1,15 @@
-<h2>Follower Users</h2>
-<% if @users.exists? %>
+
+
+
+<div class="container-fluid ly_main">
+  <div class="row justify-cont">
+    <div class="col-md-auto">
+      <h2>Follower Users</h2>
+      <% if @users.exists? %>
   <%= render '/users/index', users: @users %>
 <% else %>
   <p>ユーザーはいません</p>
 <% end %>
+    </div>
+  </div>
+</div>

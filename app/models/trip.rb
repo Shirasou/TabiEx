@@ -8,10 +8,10 @@ class Trip < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_many_attached :images
 
-  validates :evaluation, numericality: {
-    less_than_or_equal_to: 5,
-    greater_than_or_equal_to: 1
-  }, presence: true
+   validates :evaluation, numericality: {
+     less_than_or_equal_to: 5,
+     greater_than_or_equal_to: 1
+   }, presence: true
 
 
   def trip_liked_by?(user)
@@ -81,5 +81,9 @@ class Trip < ApplicationRecord
       notification.checked = true
     end
     notification.save if notification.valid?
+  end
+
+  def old_image
+    images.order(id: 'ASC').first
   end
 end

@@ -29,6 +29,7 @@ class TripsController < ApplicationController
   def show
     @user = @trip.user
     @comment = Comment.new
+    @old_image = @trip.old_image
   end
 
   def search
@@ -69,7 +70,7 @@ class TripsController < ApplicationController
   end
 
   def trip_params
-    params.require(:trip).permit(:date_time, :city, :title, :description, :evaluation, :category_id).merge(images: uploaded_images)
+    params.require(:trip).permit(:date, :city, :title, :description, :evaluation, :category_id).merge(images: uploaded_images)
   end
 
   def uploaded_images

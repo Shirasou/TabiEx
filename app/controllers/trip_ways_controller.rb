@@ -27,6 +27,9 @@ class TripWaysController < ApplicationController
 
   def show
     @user = @trip_way.user
+    @trip_way_relations = @trip_way.trip_way_relations.all
+    @old_trip_relation = @trip_way_relations.order(id: 'ASC').first
+    @old_image = @old_trip_relation.trip.old_image
   end
 
   def edit

@@ -1,32 +1,33 @@
 <div>
-  <%= image_tag "Japan.jpg", class: "show-img" %>
+  <%= image_tag @old_image, class: "show-img border-right border-top border-bottom border-dark border-3"%>
 </div>
-<div class="container">
-  <div class="row justify-content-md-center text-center">
-    <%= render 'users/card', user: @user %>
-  </div>
+
+<div class="row justify-content-md-center text-center">
+  <%= render 'users/card', user: @user %>
 </div>
 
 <div class="container mt-5">
   <div class="row justify-content-md-center text-center">
-    <div clas="col-md-5">
-      <h2><%= @trip_way.title %></h2>
-      <div>
-        <span class="trip-evaluation mr-1" data-score="<%= @trip_way.evaluation %>"></span>
-        人数:<%= @trip_way.number_of_people %>人
+    <div class="col-md-6">
+      <div clas="col-md-4">
+        <h2><%= @trip_way.title %></h2>
+        <div>
+          <span class="trip-evaluation mr-1" data-score="<%= @trip_way.evaluation %>"></span>
+          人数:<%= @trip_way.number_of_people %>人
+        </div>
+        <p><%= @trip_way.start_date.strftime("%Y/%m/%d") %><strong>~</strong><%= @trip_way.finish_date.strftime("%Y/%m/%d") %></p>
+        <p class="description"><%= @trip_way.description %></p>
+        <% if @trip_way.user == current_user %>
+          <%= link_to 'Edit', edit_trip_way_path(@trip_way), class: "btn btn-sm btn-outline-success mr-1" %>
+          <%= link_to 'Destroy', trip_way_path(@trip_way), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-outline-danger" %>
+        <% end %>
       </div>
-      <p><%= @trip_way.start_date %><strong>~</strong><%= @trip_way.finish_date %></p>
-      <p class="description"><%= @trip_way.description %></p>
-      <% if @trip_way.user == current_user %>
-        <%= link_to 'Edit', edit_trip_way_path(@trip_way), class: "btn btn-sm btn-outline-success mr-1" %>
-        <%= link_to 'Destroy', trip_way_path(@trip_way), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-outline-danger" %>
-      <% end %>
     </div>
   </div>
 </div>
 
 <% trip_count = 1 %>
-<% @trip_way.trip_way_relations.each do |f| %>
+<% @trip_way.trip_way_relations.each.with_index(1) do |f, i| %>
   <div class="container-fluid mt-5 pt-3">
     <div class="number"><%= trip_count %></div>
     <%= render 'trips/show', trip: f.trip %>

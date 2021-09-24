@@ -16,7 +16,7 @@
     <h4 class="trip_title text-sideway"><%= trip.city %></h4>
     <div class="pl-5 mt-3 pt-5 mb-3">
       <div>
-        <%= trip.date_time %>
+        <%= trip.date.strftime("%Y/%m/%d") %>
         <div class="ml-3">
           <div class="pt-3">
             <h2><%= trip.title %></h2>

@@ -1,25 +1,47 @@
 <% trip_ways.each do |trip_way| %>
-  <p>タイトル：<%= trip_way.title %></p>
-  <p><%= trip_way.start_date %>~<%= trip_way.finish_date %></p>
-  <p>人数：<%= trip_way.number_of_people %></p>
-  <p>説明：<%= trip_way.description %></p>
-  <% trip_count = 1 %>
-  <% trip_way.trip_way_relations.each do |f| %>
-  <div>
-    <%= trip_count %>
-    <% f.trip.images.each do |image| %>
-    <%= image_tag image.variant(resize: "150x150") %>
-    <% end %>
-    <p>評価：
-    <span class="trip-evaluation" data-score="<%= f.trip.evaluation %>"></span>
+  <div class="col-md-3">
+    <h2><%= trip_way.title %></h2>
+    <p>
+      <span><%= trip_way.start_date.strftime("%Y/%m/%d") %>~<%= trip_way.finish_date.strftime("%Y/%m/%d") %></span>
+      <span class="ml-3"><%= trip_way.number_of_people %>人</span>
     </p>
-    <p>タイトル：<%= f.trip.title %></p>
-    <p>都市：<%= f.trip.city %></p>
-    <p>時間帯：<%= f.trip.date_time %></p>
-    <p>説明：<%= f.trip.description %></p>
-    <p><%= link_to "Show", trip_path(f.trip.id) %></p>
+    <p><%= trip_way.description %></p>
+    <div class="text-center mt-5">
+      <%= link_to "もっと詳しく", trip_way_path(trip_way), class: "btn btn-outline-primary btn-sm" %>
+    </div>
   </div>
-  <% trip_count = trip_count + 1 %>
-  <% end %>
-  <p><%= link_to "Show", trip_way_path(trip_way) %></p>
+
+  <div class="col-md-9">
+    <div class="row flex-nowrap">
+      <% trip_count = 1 %>
+      <% trip_way.trip_way_relations.each do |f| %>
+        <div class="col-md-6 mb-3">
+          <div class="border border-dark rounded border-3 bg-white">
+            <%= link_to trip_path(f.trip), class: "link" do %>
+              <div class="text-right pr-3">
+                <%= f.trip.created_at.strftime("%Y/%m/%d") %>
+              </div>
+              <div class="slider">
+                <% f.trip.images.each do |image| %>
+                  <div>
+                    <%= image_tag image, class: "slider-index-img rounded-1 border-top border-bottom border-dark border-3" %>
+                  </div>
+                <% end %>
+              </div>
+              <div class="trip-title">
+                <%= trip_count %>:<%= f.trip.category.name %>
+              </div>
+              <div class="pt-2 pl-3 small">
+                <%= f.trip.title %>
+              </div>
+              <div class="pb-2 pl-2 small">
+                City:<span class="h5"><%= f.trip.city %></span>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% trip_count = trip_count + 1 %>
+      <% end %>
+    </div>
+  </div>
 <% end %>
