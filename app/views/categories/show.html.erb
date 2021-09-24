@@ -1,2 +1,9 @@
-<h2><%= @category.name %></h2>
-<%= render 'trips/index', trips: @trips %>
+<div>
+  <%= image_tag "Japan.jpg", class: "show-img" %>
+</div>
+<h2 class="category_title"><%= @category.name %></h2>
+<div class="container-fluid">
+  <div class="row mx-auto my-suto">
+    <%= render 'trips/index', trips: @trips %>
+  </div>
+</div>

@@ -132,7 +132,7 @@ ActiveRecord::Schema.define(version: 2021_09_11_072636) do
     t.integer "category_id"
     t.text "title", null: false
     t.float "evaluation", default: 0.0, null: false
-    t.datetime "date_time", null: false
+    t.date "date", null: false
     t.text "description", null: false
     t.string "city", null: false
     t.datetime "created_at", null: false

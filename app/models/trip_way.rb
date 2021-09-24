@@ -19,4 +19,8 @@ class TripWay < ApplicationRecord
       TripWay.where('title LIKE ?', '%' + content + '%' )
     end
   end
+  
+  def old_image
+    images.order(id: 'ASC').first
+  end
 end

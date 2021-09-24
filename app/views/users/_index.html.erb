@@ -1,27 +1,50 @@
-<table class='table'>
+<table class='table table-borderless table-responsive card-1 p-4'>
   <thead>
-    <tr>
+    <tr class="border-bottom">
       <th>name</th>
-      <th colspan="3"></th>
+      <th>Gender</th>
+      <th>age</th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td>フォロー数: <%= user.followings.count %></td>
-        <td>フォロワー数: <%= user.followers.count %></td>
+      <tr class="border-bottom">
         <td>
+          <div class="p-2 d-flex flex-row align-items-center mb-2">
+            <% if user.image.attached? %>
+              <%= image_tag user.image, class: "rounded-circle", style: "width: 40px; object-fit: cover;"  %>
+            <% else %>
+              <%= image_tag 'no-img.jpg', class: "rounded-circle", style: "width: 40px; object-fit: cover;" %>
+            <% end %>
+            <div class="d-flex flex-colum ml-2">
+              <div>
+                <span class="d-block font-weight-bold"><%= user.name %></span>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td class="align-middle">
+          <span>
+            <%= user.sex %>
+          </span>
+        </td>
+        <td class="align-middle">
+          <span>
+            <%= user.age.to_s %>歳
+          </span>
+        </td>
+        <td class="align-middle">
           <% if current_user != user %>
             <% if current_user.following?(user) %>
-              <%= link_to "フォロー外す", user_relationships_path(user.id), method: :delete %>
+              <%= link_to "フォロー外す", user_relationships_path(user.id), method: :delete, class: "btn btn-sm btn-outline-danger" %>
             <% else %>
-              <%= link_to "フォローする", user_relationships_path(user.id), method: :post %>
+              <%= link_to "フォロー", user_relationships_path(user.id), method: :post, class: "btn btn-sm btn-outline-success" %>
             <% end %>
           <% end %>
         </td>
-        <td><%= link_to 'Show', user_path(user), class: "user_#{user.id}" %></td>
+        <td class="align-middle"><%= link_to 'Show', user_path(user), class: "btn btn-sm btn-outline-primary" %></td>
       </tr>
     <% end %>
   </tbody>

@@ -84,11 +84,9 @@ ol li{
   writing-mode: vertical-rl;
 }
 .trip-title {
-  color: #000000;
-  padding: 50px 0;
   text-align: center;
   position: absolute;
-  bottom: 385px;
+  bottom: 444px;
   display: inline-block;
   color: #ffffff;
   font-size: 36pt;
@@ -123,7 +121,7 @@ ol li{
 
 .user-card {
   position: absolute;
-  top: 500px;
+  top: 520px;
   right: 10%;
   display: inline-block;
 }
@@ -185,6 +183,15 @@ ol li{
   bottom: -50px;
   font-size: 100px;
 }
+.category_title {
+  width: 140%;
+  color: #fff;
+  padding: 50px 0;
+  text-align: center;
+  position: absolute;
+  top: 357px;
+  font-size: 200px;
+}
 .slider-index-img {
   object-fit: cover;
   width: 100%;
@@ -232,6 +239,8 @@ header {
   z-index: 10;
   background-color: #fff;
 }
+
+
 nav {
   display: block;
   position: fixed;
@@ -331,90 +340,3 @@ nav ul.nav-menu li {
 }
 
 
-
-
-
-
-
-
-
-section.typeB{
-	display: flex;
-	flex-wrap: wrap;
-}
-section.typeB::after {
-	content: '';
-	width: 100%;
-	height: 3px;
-	display: block;
-	order: -1;
-	background: rgba(0,0,0,.1);
-}
-section.typeB .tabLabel {	/* タブ */
-	margin-right: 3px;
-	padding: 3px 12px;
-	flex: 1;
-	order: -1;
-	border-radius: 3px 3px 0 0;
-	color: #444;
-	background: rgba(0,137,167,.3);
-	position: relative;
-	transition: .5s ;
-	cursor: pointer;
-}
-section.typeB .tabLabel::after {
-	content: '';
-	width: 100% ;
-	height: 3px;
-	display: block;
-	pointer-events: none;
-	transform: translateX(100%);
-	transition: cubic-bezier(0.4, 0, 0.2, 1) .2s 80ms;
-	background: #EFBB24;
-	position: absolute;
-	left: 0;
-	bottom: -3px;
-	z-index: 10;
-	opacity: 0;
-}
-section.typeB .tabLabel:nth-last-of-type(1){ margin-right: 0; }
-section.typeB input {		/* ラジオボタン非表示 */
-	display: none;
-}
-section.typeB .content {	/* 本文 */
-	width: 100%;
-	height:0;
-	overflow:hidden;
-	box-shadow: 0 0 5px rgba(0,0,0,.2);
-	opacity:0;
-}
-section.typeB .content > div {
-	pointer-events:none;
-	transform: translateX(30%);
-	transition: transform .3s 80ms, opacity .3s 80ms;
-}
-/*アクティブ設定*/
-section.typeB input:checked + .tabLabel {		/*タブ*/
-	color: #fff;
-	background: rgba(0,137,167,.7);
-}
-section.typeB input:checked ~ .tabLabel::after {
-	transform: translateX(-100%);
-}
-section.typeB input:checked + .tabLabel::after {
-	opacity: 1;
-	transform: translateX(0);
-}
-section.typeB input:checked + .tabLabel + .content {	/*本文*/
-	height: auto;
-	padding: 15px;
-	order: 1;
-	opacity: 1;
-}
-section.typeB input:checked ~ .content > div {
-	transform: translateX(30%);
-}
-section.typeB input:checked + .tabLabel + .content > div {
-	pointer-events:auto;
-	transform: translateX(0);
-}

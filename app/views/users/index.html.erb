@@ -1,2 +1,11 @@
-<h2>Users</h2>
-<%= render 'index',users: @users %>
+<div class="container-fluid ly_main">
+  <div class="row justify-cont">
+    <div class="col-md-3 text-center">
+		  <%= render 'info', {user: @user, isRoom: @isRoom, roomId: @roomId, room: @room, entry: @entry} %>
+		</div>
+    <div class="col-md-8">
+      <h2>Users</h2>
+      <%= render 'index',users: @users %>
+    </div>
+  </div>
+</div>
