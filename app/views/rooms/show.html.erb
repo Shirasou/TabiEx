@@ -1,38 +1,57 @@
-<div class="left-button">
-  <%= link_to "ユーザー一覧に戻る", "/users/index",class:"edit-link" %>
-</div>
-<h4 class="rooms-title">気になる同士</h4>
-<% @entries.each do |e| %>
-  <div class="user-name">
-  <strong>
-    <%#= image_tag e.user.image, class:"user-image" %>
-      <a class="rooms-user-link" href="/users/<%= e.user.id %>">
-        <%= e.user.name %>さん
-      </a>
-  </strong>
-  </div>
-<% end %>
-<hr>
-<div class="chats">
-  <div class="chat">
-    <% if @messages.present? %>
-      <% @messages.each do |m| %>
-        <div class="chat-box">
-          <div class="chat-face">
-            <%#= image_tag m.user.image, class:"user-image" %>
-          </div>
-          <div class="chat-hukidashi"> <strong><%= m.message %></strong> <br>
-            <%= m.created_at.strftime("%Y-%m-%d %H:%M")%>
-          </div>
-        </div>
+<div class="container-fluid ly_main">
+  <div class="row chat justify-content-md-center">
+    <div class="col-md-3 text-center">
+      <% @entries.each do |e| %>
+        <% unless e.user_id == current_user.id %>
+          <%= render 'users/info', user: e.user %>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
-  <div class="posts">
-    <%= form_for @message do |f| %>
-      <%= f.text_field :message, placeholder: "メッセージを入力して下さい" , size: 70, class:"form-text-field" %>
-        <%= f.hidden_field :room_id, value: @room.id %>
-          <%= f.submit "投稿",class: 'form-submit'%>
-    <% end %>
+    </div>
+    <div class="col-md-8 chat-main">
+      <div class="px-2 scroll">
+        <% if @messages.present? %>
+          <% @messages.each do |m| %>
+            <% if m.user_id == current_user.id %>
+              <div class="d-flex align-items-center text-right justify-content-end">
+                <div class="pr-2">
+                  <span class="name"><%= m.user.name %></span>
+                  <p class="msg"><%= m.message %></p>
+                </div>
+                <div>
+                  <% if m.user.image.attached? %>
+                    <%= image_tag m.user.image, class: "img1 rounded-circle" %>
+                  <% else %>
+                    <%= image_tag 'no-img.jpg', class: "img1 rounded-circle" %>
+                  <% end %>
+                </div>
+              </div>
+            <% else %>
+              <div class="d-flex align-items-center">
+                <div class="pr-2">
+                  <span class="name"><%= m.user.name %></span>
+                  <p class="msg"><%= m.message %></p>
+                </div>
+                <div>
+                  <% if m.user.image.attached? %>
+                    <%= image_tag m.user.image, class: "img1 rounded-circle" %>
+                  <% else %>
+                    <%= image_tag 'no-img.jpg', class: "img1 rounded-circle" %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="navbar navbar-expand-sm">
+        <%= form_with model: @message, class: "d-flex", local:true do |f| %>
+          <%= f.text_field :message, placeholder: "メッセージを入力して下さい", class: "form-control form-chat" %>
+          <%= f.hidden_field :room_id, value: @room.id %>
+          <%= f.button :type => "submit", style: 'border-style: none;' do %>
+            <i class="fas fa-paper-plane fa-2x" aria-hidden="true"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

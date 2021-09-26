@@ -1,7 +1,7 @@
 <% if user.image.attached? %>
-  <%= image_tag user.image, class: "rounded-circle", style: "width: 120px; object-fit: cover;"  %>
+  <%= image_tag user.image, class: "rounded-circle", style: "width: 120px; height: 120px; object-fit: cover;"  %>
 <% else %>
-  <%= image_tag 'no-img.jpg', class: "rounded-circle", style: "width: 120px; object-fit: cover;" %>
+  <%= image_tag 'no-img.jpg', class: "rounded-circle", style: "width: 120px; height: 120px; object-fit: cover;" %>
 <% end %>
 <h4 class="mt-2">
   <%= user.name %>
@@ -21,7 +21,7 @@
   </span>
 </div>
 <div class="mt-3 p-3">
-  <span><%= user.introduction %></span>
+  <p><%= user.introduction %></p>
 </div>
 
 <div>
@@ -33,20 +33,5 @@
     <% end %>
   <% else %>
     <%= link_to 'edit', edit_user_path(user), class: "btn btn-sm btn-outline-success" %>
-  <% end %>
-</div>
-
-<div class="mt-2">
-  <% unless user.id == current_user.id %>
-    <% if isRoom == true %>
-      <%= link_to "チャットへ", room_path(roomId), class: "btn btn-sm btn-outline-primary" %>
-    <% else %>
-      <%= form_with model: room, local: true do |f| %>
-        <%= fields_for entry do |e| %>
-          <%= e.hidden_field :user_id, value: user.id %>
-        <% end %>
-        <%= f.submit "チャットを始める", class: "btn btn-sm btn-outline-primary" %>
-      <% end %>
-    <% end %>
   <% end %>
 </div>

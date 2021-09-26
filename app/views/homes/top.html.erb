@@ -1,12 +1,29 @@
+
 <div class="ly_main">
-  <h1 class="title">
-    Let's Share Your Trips and </br>
-    Make Us Happy.
-  </h1>
-  <p class="theme">
-    コロナ禍で旅行できない皆様が旅の思い出の詳細な記録として活用していただきたい。</bt>
-    また、共有することでアフターコロナの時に旅の新たなプラン作成にお役立てください。
-  </p>
+  <div class="container-fluid">
+    <div class="row justify-content-start">
+      <div class="col-6 pl-5">
+        <h1 class="title">
+          Let's Share Your Trips and </br>
+          Make Us Happy.
+        </h1>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row justify-content-end">
+      <div class="col-6 pr-5">
+        <div class="text-center">
+          <%= render 'layouts/search' %>
+        </div>
+        <p class="theme">
+          <% @categories.each do |category| %>
+            <%= link_to category.name, category_path(category), class: "mr-1" %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="container-fluid">
   <div class="row mx-auto my-auto">
