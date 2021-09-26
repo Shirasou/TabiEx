@@ -3,9 +3,13 @@
     <div class="col-md-3 text-center">
 		  <%= render 'info', {user: @user, isRoom: @isRoom, roomId: @roomId, room: @room, entry: @entry} %>
 		</div>
-    <div class="col-md-8">
+    <div class="col-md-9">
       <h2>Users</h2>
-      <%= render 'index',users: @users %>
+      <div class="container-fluid mt-3">
+        <div class="row mx-auto my-suto">
+          <%= render 'index',users: @users %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

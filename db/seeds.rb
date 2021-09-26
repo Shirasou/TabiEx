@@ -16,123 +16,61 @@
     )
   end
 
-  Category.create!(
-  [
-    {
-      name: 'Japan',
-      #image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/Japan.jpg")))
-    },
-    {
-      name: 'America',
-      #image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/America.jpg")))
-    },
-    {
-      name: 'Britain',
-      #image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/UK.jpg")))
-    },
-    {
-      name: 'France',
-      #image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/France.jpg")))
-    },
-    {
-      name: 'Italy',
-      #image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/Italy.jpg")))
-    },
-    {
-      name: 'Spain',
-      #image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/Spain.jpg")))
-    },
-    {
-      name: 'Germany',
-      #image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/Germany.jpg")))
-    },
-    {
-      name: 'Portugal',
-      #image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/Portugal.jpg")))
-    },
-    {
-      name: 'Netherlands',
-      #image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/Netherlands.jpg")))
-    },
-    {
-      name: 'Kingdom of Belgium',
-      #image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/Kingdom_of_Belgium.jpg")))
-    },
-    {
-      name: 'Russian',
-      #image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/Russian.jpg")))
-    },
-    {
-      name: 'Egypt',
-      #image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/Egypt.jpg")))
-    },
-    {
-      name: 'China',
-      #image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/China.jpg")))
-    },
-    {
-      name: 'Korea',
-      #image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/Korea.jpg")))
-    },
-    {
-      name: 'Taiwan',
-      #image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/Taiwan.jpg")))
-    },
-    {
-      name: 'Vietnam',
-      #image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/Vietnam.jpg")))
-    },
-    {
-      name: 'Thailamd',
-      #image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/Thailamd.jpg")))
-    },
-    {
-      name: 'Singapore',
-      #image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/Singapore.jpg")))
-    },
-    {
-      name: 'Malaysia',
-      #image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/Malaysia.jpg")))
-    },
-    {
-      name: 'Indonesia',
-      #image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/Indonesia.jpg")))
-    },
-    {
-      name: 'Philippines',
-      #image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/Philippines.jpg")))
-    },
-    {
-      name: 'india',
-      #image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/india.jpg")))
-    },
-    {
-      name: 'Australia',
-      #image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/Australia.jpg")))
-    },
-    {
-      name: 'New Zealand',
-      #image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/New_Zealand.jpg")))
-    },
-    {
-      name: 'Canada',
-      #image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/Canada.jpg")))
-    },
-    {
-      name: 'Mexico',
-      #image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/Mexico.jpg")))
-    },
-    {
-      name: 'Brasil',
-      #image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/Brasil.jpg")))
-    },
-    {
-      name: 'Argentina',
-      #image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/Argentina.jpg")))
-    },
-    {
-      name: 'Peru',
-      #image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/Peru.jpg")))
-    }
-  ]
-)
+  category = Category.create(name: 'Japan')
+  category.image.attach(io: File.open(Rails.root.join('db/images/Japan.jpg')), filename: 'Japan.jpg')
+  category = Category.create(name: 'America')
+  category.image.attach(io: File.open(Rails.root.join('db/images/America.jpg')), filename: 'America.jpg')
+  category = Category.create(name: 'Britain')
+  category.image.attach(io: File.open(Rails.root.join('db/images/Britain.jpg')), filename: 'Britain.jpg')
+  category = Category.create(name: 'France')
+  category.image.attach(io: File.open(Rails.root.join('db/images/France.jpg')), filename: 'France.jpg')
+  category = Category.create(name: 'Italy')
+  category.image.attach(io: File.open(Rails.root.join('db/images/Italy.jpg')), filename: 'Italy.jpg')
+  category = Category.create(name: 'Spain')
+  category.image.attach(io: File.open(Rails.root.join('db/images/Spain.jpg')), filename: 'Spain.jpg')
+  category = Category.create(name: 'Germany')
+  category.image.attach(io: File.open(Rails.root.join('db/images/Germany.jpg')), filename: 'Germany.jpg')
+  category = Category.create(name: 'Portugal')
+  category.image.attach(io: File.open(Rails.root.join('db/images/Portugal.jpg')), filename: 'Portugal.jpg')
+  category = Category.create(name: 'Netherlands')
+  category.image.attach(io: File.open(Rails.root.join('db/images/Netherlands.jpg')), filename: 'Netherlands.jpg')
+  category = Category.create(name: 'Belgium')
+  category.image.attach(io: File.open(Rails.root.join('db/images/Kingdom_of_Belgium.jpg')), filename: 'Kingdom_of_Belgium.jpg')
+  category = Category.create(name: 'Russian')
+  category.image.attach(io: File.open(Rails.root.join('db/images/Russian.jpg')), filename: 'Russian.jpg')
+  category = Category.create(name: 'Egypt')
+  category.image.attach(io: File.open(Rails.root.join('db/images/Egypt.jpg')), filename: 'Egypt.jpg')
+  category = Category.create(name: 'China')
+  category.image.attach(io: File.open(Rails.root.join('db/images/China.jpg')), filename: 'China.jpg')
+  category = Category.create(name: 'Korea')
+  category.image.attach(io: File.open(Rails.root.join('db/images/Korea.jpg')), filename: 'Korea.jpg')
+  category = Category.create(name: 'Taiwan')
+  category.image.attach(io: File.open(Rails.root.join('db/images/Taiwan.jpg')), filename: 'Taiwan.jpg')
+  category = Category.create(name: 'Vietnam')
+  category.image.attach(io: File.open(Rails.root.join('db/images/Vietnam.jpg')), filename: 'Vietnam.jpg')
+  category = Category.create(name: 'Thailamd')
+  category.image.attach(io: File.open(Rails.root.join('db/images/Thailamd.jpg')), filename: 'Thailamd.jpg')
+  category = Category.create(name: 'Singapore')
+  category.image.attach(io: File.open(Rails.root.join('db/images/Singapore.jpg')), filename: 'Singapore.jpg')
+  category = Category.create(name: 'Malaysia')
+  category.image.attach(io: File.open(Rails.root.join('db/images/Malaysia.jpg')), filename: 'Malaysia.jpg')
+  category = Category.create(name: 'Indonesia')
+  category.image.attach(io: File.open(Rails.root.join('db/images/Indonesia.jpg')), filename: 'Indonesia.jpg')
+  category = Category.create(name: 'Philippines')
+  category.image.attach(io: File.open(Rails.root.join('db/images/Philippines.jpg')), filename: 'Philippines.jpg')
+  category = Category.create(name: 'India')
+  category.image.attach(io: File.open(Rails.root.join('db/images/India.jpg')), filename: 'India.jpg')
+  category = Category.create(name: 'Australia')
+  category.image.attach(io: File.open(Rails.root.join('db/images/Australia.jpg')), filename: 'Australia.jpg')
+  category = Category.create(name: 'New Zealand')
+  category.image.attach(io: File.open(Rails.root.join('db/images/New_Zealand.jpg')), filename: 'New_Zealand.jpg')
+  category = Category.create(name: 'Canada')
+  category.image.attach(io: File.open(Rails.root.join('db/images/Canada.jpg')), filename: 'Canada.jpg')
+  category = Category.create(name: 'Mexico')
+  category.image.attach(io: File.open(Rails.root.join('db/images/Mexico.jpg')), filename: 'Mexico.jpg')
+  category = Category.create(name: 'Brasil')
+  category.image.attach(io: File.open(Rails.root.join('db/images/Brasil.jpg')), filename: 'Brasil.jpg')
+  category = Category.create(name: 'Argentina')
+  category.image.attach(io: File.open(Rails.root.join('db/images/Argentina.jpg')), filename: 'Argentina.jpg')
+  category = Category.create(name: 'Peru')
+  category.image.attach(io: File.open(Rails.root.join('db/images/Peru.jpg')), filename: 'Peru.jpg')

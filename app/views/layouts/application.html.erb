@@ -35,7 +35,6 @@
             <% end %>
             <li><%= link_to "NOTICE", notifications_path %></li>
             <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
-            <li><%= render 'layouts/search' %></li>
 
           <% else %>
             <li><%= link_to "Log in", new_user_session_path %></li>
@@ -56,9 +55,12 @@
     </header>
 
 
-    <main>
-      <%= yield %>
-    </main>
+     <div class='body'>
+      <div class='container-fluid'>
+        <p id="notice"><%= notice %></p>
+        <%= yield %>
+      </div>
+    </div>
     <footer>
 
     </footer>

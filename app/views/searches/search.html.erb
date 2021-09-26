@@ -1,10 +1,31 @@
 <% if @model == 'user' %>
-	<h3>Users search for "<%= @content %>"</h3>
-  <%= render 'users/index', users: @records %>
+  <div>
+    <%= image_tag "User.jpg", class: "show-img" %>
+  </div>
+  <h2 class="search_title">Users search for "<%= @content %>"</h2>
+  <div class="container-fluid mt-5">
+    <div class="row mx-auto my-suto">
+      <%= render 'users/index', users: @records %>
+    </div>
+  </div>
 <% elsif @model == 'trip' %>
-	<h3>Books search for "<%= @content %>"</h3>
-  <%= render 'trips/index', trips: @records %>
+  <div>
+    <%= image_tag "Trip.jpg", class: "show-img" %>
+  </div>
+  <h2 class="search_title">Trips search for "<%= @content %>"</h2>
+  <div class="container-fluid mt-5">
+    <div class="row mx-auto my-suto">
+      <%= render 'trips/index', trips: @records %>
+    </div>
+  </div>
 <% elsif @model == 'trip_way' %>
-	<h3>Books search for "<%= @content %>"</h3>
-  <%= render 'trip_ways/index', trip_ways: @records %>
+  <div>
+    <%= image_tag "Trip_way.jpg", class: "show-img" %>
+  </div>
+  <h2 class="search_title">Trip_ways search for "<%= @content %>"</h2>
+  <div class="container-fluid mt-5">
+    <div class="row mx-auto my-suto">
+      <%= render 'trip_ways/index', trip_ways: @records %>
+    </div>
+  </div>
 <% end %>
