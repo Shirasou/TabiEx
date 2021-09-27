@@ -44,8 +44,8 @@ class TripsController < ApplicationController
     # 一旦、すべてのimageの紐つけを解除
     @trip.images.detach
     if @trip.update(trip_params)
-      redirect_to @trip
       flash[:notice] = "編集しました"
+      redirect_to @trip
     else
       render :edit
     end
