@@ -3,8 +3,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-<<<<<<< HEAD
-=======
 
   has_many :trips, dependent: :destroy
   has_many :trip_ways, dependent: :destroy
@@ -65,5 +63,4 @@ class User < ApplicationRecord
   def age
     (Date.today.strftime('%Y%m%d').to_i - birth_at.strftime('%Y%m%d').to_i) / 10000
   end
->>>>>>> develop
 end

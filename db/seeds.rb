@@ -5,8 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-<<<<<<< HEAD
-=======
 
   5.times do |n|
     @user = User.create!(
@@ -76,4 +74,3 @@
   category.image.attach(io: File.open(Rails.root.join('db/images/Argentina.jpg')), filename: 'Argentina.jpg')
   category = Category.create(name: 'Peru')
   category.image.attach(io: File.open(Rails.root.join('db/images/Peru.jpg')), filename: 'Peru.jpg')
->>>>>>> develop
