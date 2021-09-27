@@ -1,0 +1,36 @@
+<% if @model == 'user' %>
+  <div>
+    <%= image_tag "User.jpg", class: "show-img" %>
+  </div>
+  <h2 class="search_title">Users search for "<%= @content %>"</h2>
+  <div class="container-fluid mt-5">
+    <div class="row mx-auto my-suto">
+      <%= render 'users/index', users: @records %>
+    </div>
+  </div>
+<% elsif @model == 'trip' %>
+  <div>
+    <%= image_tag "Trip.jpg", class: "show-img" %>
+  </div>
+  <h2 class="search_title">Trips search for "<%= @content %>"</h2>
+  <div class="container-fluid mt-5">
+    <div class="row mx-auto my-suto">
+      <%= render 'trips/index', trips: @records %>
+    </div>
+  </div>
+<% elsif @model == 'trip_way' %>
+  <div>
+    <%= image_tag "Trip_way.jpg", class: "show-img" %>
+  </div>
+  <h2 class="search_title">Trip_ways search for "<%= @content %>"</h2>
+  <div class="container-fluid mt-5">
+    <div class="row mx-auto my-suto">
+      <%= render 'trip_ways/index', trip_ways: @records %>
+    </div>
+  </div>
+<% end %>
+<div class="container">
+  <div class="row justify-content-center">
+    <%= paginate @records %>
+  </div>
+</div>

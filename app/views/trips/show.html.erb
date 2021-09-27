@@ -1,0 +1,44 @@
+<div id="trip_<%= @trip.id %>">
+  <div>
+    <%= image_tag @old_image, class: "show-img border-right border-top border-bottom border-dark border-3"%>
+  </div>
+
+  <div class="row justify-content-md-center">
+    <%= render 'users/card', user: @user %>
+  </div>
+
+  <div class="container-fluid mt-5 pt-3">
+    <%= render 'show', trip: @trip %>
+    <div class="row justify-content-md-center pt-3">
+      <div class="col-md-5">
+        <h4>Commets</h4>
+        <div class="comments">
+          <%= render 'comments/index', trip: @trip %>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="form-group">
+          <h4>Leave a Commet</h4>
+          <%= form_with model:[@trip,@comment] do |f| %>
+            <div class="pr-3 pl-3">
+              <%= f.text_area :comment, class: "form-control" %><br>
+            </div>
+            <div class="text-right pr-3">
+              <%= f.submit '送信', class: "text-right btn-sm btn-outline-primary"%>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('.trip-evaluation').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+</script>
