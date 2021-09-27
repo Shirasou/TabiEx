@@ -1,6 +1,8 @@
 
-
-<%= form_with model: @user, url: user_registration_path, class: 'form-center ly_main', local: true do |f| %>
+<div class="container ly_main">
+  <%= render 'layouts/errors', obj: @user %>
+</div>
+<%= form_with model: @user, url: user_registration_path, class: 'form-center', local: true do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   <h2>Sign up</h2>
 

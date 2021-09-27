@@ -20,9 +20,10 @@ class MessagesController < ApplicationController
         end
         notification.save if notification.valid?
         redirect_to "/rooms/#{@message.room_id}"
+        flash[:notice] = "メッセージを送信しました。"
       end
     else
-      flash[:alert] = "メッセージ送信に失敗しました。"
+      flash[:notice] = "メッセージ送信に失敗しました。"
     end
   end
 
