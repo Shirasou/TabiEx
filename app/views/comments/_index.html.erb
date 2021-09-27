@@ -1,14 +1,18 @@
-<table>
-  <% trip.comments.each do |comment| %>
+<% trip.comments.each do |comment| %>
     <% comment_user = comment.user %>
-    <tr>
-    	<td>
-    	  <%= comment_user.name %>
-    	</td>
-    	<td><%= comment.comment %></td>
-    	<% if current_user == comment_user %>
-      	<td><%= link_to 'Destroy', trip_comment_path(comment.trip_id, comment.id), method: :delete, remote: true %></td>
-    	<% end %>
-    </tr>
-  <% end %>
-</table>
+<div class="d-flex justify-content-center py-1">
+  <div class="second py-1 px-1">
+    <span class="text1"><%= comment.comment %></span>
+    <div class="d-flex justify-content-between py-1 pt-1">
+      <div>
+    <span class="text2"><%= comment_user.name %></span>
+    </div>
+    <div style="margin-right: 4px;">
+    <% if current_user == comment_user %>
+    <%= link_to 'Destroy', trip_comment_path(comment.trip_id, comment.id), method: :delete, remote: true, class: "btn btn-sm btn-outline-danger" %>
+    <% end %>
+    </div>
+    </div>
+  </div>
+</div>
+<% end %>

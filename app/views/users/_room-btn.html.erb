@@ -1,0 +1,14 @@
+<div class="mt-2">
+  <% unless user.id == current_user.id %>
+    <% if is_room == true %>
+      <%= link_to "チャットへ", room_path(room_id), class: "btn btn-sm btn-outline-primary" %>
+    <% else %>
+      <%= form_with model: room, local: true do |f| %>
+        <%= fields_for entry do |e| %>
+          <%= e.hidden_field :user_id, value: user.id %>
+        <% end %>
+        <%= f.submit "チャットを始める", class: "btn btn-sm btn-outline-primary" %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

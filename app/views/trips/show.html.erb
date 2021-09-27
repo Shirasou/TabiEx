@@ -1,42 +1,37 @@
-<h1>投稿詳細</h1>
 <div id="trip_<%= @trip.id %>">
-<div>
-  <% @trip.images.each do |image| %>
-  <%= image_tag image.variant(resize: "150x150") %>
-  <% end %>
-  <p>評価：
-  <span class="trip-evaluation" data-score="<%= @trip.evaluation %>"></span>
-  </p>
-  <p>タイトル：<%= @trip.title %></p>
-  <p>国：<%= @trip.category.name %></p>
-  <p>都市：<%= @trip.city %></p>
-  <p>時間帯：<%= @trip.date_time %></p>
-  <p>タグ：
-  <% @trip_tags.each do |tag| %>
-  <span>
-    <%= link_to tag.name, tag_trips_path(tag_id: tag.id) %>
-    <%= tag.trips.count %>
-  </span>
-  <% end %>
-  </p>
-  <p>説明：<%= @trip.description %></p>
-  <p class="comments-count">コメント数: <%= @trip.comments.count %></p>
-  <p class="like-btn"><%= render "trip_likes/like-btn", trip: @trip %></p>
-</div>
+  <div>
+    <%= image_tag @old_image, class: "show-img border-right border-top border-bottom border-dark border-3"%>
+  </div>
 
-<% if @trip.user == current_user %>
-<p><%= link_to 'Edit', edit_trip_path(@trip) %></p>
-<p><%= link_to 'Destroy', trip_path(@trip), method: :delete, data: { confirm: '本当に消しますか？' } %></p>
-<% end %>
-</div>
+  <div class="row justify-content-md-center">
+    <%= render 'users/card', user: @user %>
+  </div>
 
-<div class="comments">
-  <%= render 'comments/index', trip: @trip%>
+  <div class="container-fluid mt-5 pt-3">
+    <%= render 'show', trip: @trip %>
+    <div class="row justify-content-md-center pt-3">
+      <div class="col-md-5">
+        <h4>Commets</h4>
+        <div class="comments">
+          <%= render 'comments/index', trip: @trip %>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="form-group">
+          <h4>Leave a Commet</h4>
+          <%= form_with model:[@trip,@comment] do |f| %>
+            <div class="pr-3 pl-3">
+              <%= f.text_area :comment, class: "form-control" %><br>
+            </div>
+            <div class="text-right pr-3">
+              <%= f.submit '送信', class: "text-right btn-sm btn-outline-primary"%>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<%= form_with model:[@trip,@comment] do |f| %>
-  <%= f.text_area :comment %><br>
-  <%= f.submit '送信'%>
-<% end %>
 
 <script>
   $('.trip-evaluation').raty({

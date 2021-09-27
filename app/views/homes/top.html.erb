@@ -1,85 +1,102 @@
-<div>
-  <h1 class="title">
-    Let's Share Your Trips and </br>
-    Make Us Happy.
-  </h1>
-  <p class="theme">
-    コロナ禍で旅行できない皆様が旅の思い出の詳細な記録として活用していただきたい。</bt>
-    また、共有することでアフターコロナの時に旅の新たなプラン作成にお役立てください。
-  </p>
-</div>
-<div class="container-fluid">
-  <div class="row mx-auto my-auto">
-    <div class="col-md-8 top_image pt-3 pb-3">
-      <%= link_to category_path(@category = 2), target: "_blank" do%>
-        <%= image_tag "America.jpg", class: "rounded-1" %>
-        <p>Amarica</p>
-      <% end %>
-    </div>
-    <div class="col-md-4 top_image pt-3 pb-3">
-      <%= link_to category_path(@category = 4), target: "_blank" do%>
-        <%= image_tag "France.jpg", class: "rounded-1" %>
-        <p>France</p>
-      <% end %>
+
+<div class="ly_main">
+  <div class="container-fluid">
+    <div class="row justify-content-start">
+      <div class="col-6 pl-5">
+        <h1 class="title">
+          Let's Share Your Trips and </br>
+          Make Us Happy.
+        </h1>
+      </div>
     </div>
   </div>
-</div>
-<div class="container-fluid">
-  <div class="row mx-auto my-auto">
-    <div class="col-md-4 top_image pt-3 pb-3">
-      <%= link_to category_path(@category = 3), target: "_blank" do%>
-        <%= image_tag "UK.jpg", class: "rounded-1" %>
-        <p>England</p>
-      <% end %>
-    </div>
-    <div class="col-md-4 top_image pt-3 pb-3">
-      <%= link_to category_path(@category = 5), target: "_blank" do%>
-        <%= image_tag "Italy.jpg", class: "rounded-1" %>
-        <p>Italy</p>
-      <% end %>
-    </div>
-    <div class="col-md-4 top_image pt-3 pb-3">
-      <%= link_to category_path(@category = 27), target: "_blank" do%>
-        <%= image_tag "Chaina.jpg", class: "rounded-1" %>
-        <p>Chaina</p>
-      <% end %>
+  <div class="container-fluid">
+    <div class="row justify-content-end">
+      <div class="col-6 pr-5">
+        <div class="text-center">
+          <%= render 'layouts/search' %>
+        </div>
+        <p class="theme">
+          <% @categories.each do |category| %>
+            <%= link_to category.name, category_path(category), class: "mr-1" %>
+          <% end %>
+        </p>
+      </div>
     </div>
   </div>
 </div>
 <div class="container-fluid">
   <div class="row mx-auto my-auto">
     <div class="col-md-8 top_image pt-3 pb-3">
-      <%= link_to category_path(@category = 1), target: "_blank" do%>
-        <%= image_tag "Japan.jpg", class: "rounded-1" %>
-        <p>Japan</p>
+      <%= link_to category_path(@category2), target: "_blank" do%>
+        <%= image_tag @category2.image, class: "rounded-1" %>
+        <p class="top_image_title"><%= @category2.name %></p>
       <% end %>
     </div>
-    <div class="col-md-4 top_image pt-3 pb-3">
-      <%= link_to category_path(@category = 32), target: "_blank" do%>
-        <%= image_tag "Singapore.jpg", class: "rounded-1" %>
-        <p>Singapore</p>
+    <div class="col-md-4 top top_image pt-3 pb-3">
+      <%= link_to category_path(@category4), target: "_blank" do%>
+        <%= image_tag @category4.image, class: "rounded-1" %>
+        <p class="top_image_title"><%= @category4.name %></p>
       <% end %>
     </div>
   </div>
 </div>
 <div class="container-fluid">
   <div class="row mx-auto my-auto">
-    <div class="col-md-4 top_image pt-3 pb-3">
-      <%= link_to category_path(@category = 39), target: "_blank" do%>
-        <%= image_tag "Australia.jpg", class: "rounded-1" %>
-        <p>Australia</p>
+    <div class="col-md-4 top top_image pt-3 pb-3">
+      <%= link_to category_path(@category3), target: "_blank" do%>
+        <%= image_tag @category3.image, class: "rounded-1" %>
+        <p><%= @category3.name %></p>
       <% end %>
     </div>
-    <div class="col-md-4 top_image pt-3 pb-3">
-      <%= link_to category_path(@category = 31), target: "_blank" do%>
-        <%= image_tag "Thailand.jpg", class: "rounded-1" %>
-        <p>Thailand</p>
+    <div class="col-md-4 top top_image pt-3 pb-3">
+      <%= link_to category_path(@category5), target: "_blank" do%>
+        <%= image_tag @category5.image, class: "rounded-1" %>
+        <p><%= @category5.name %></p>
       <% end %>
     </div>
-    <div class="col-md-4 top_image pt-3 pb-3">
-      <%= link_to category_path(@category = 30), target: "_blank" do%>
-        <%= image_tag "Vietnam.jpg", class: "rounded-1" %>
-        <p>Vietnam</p>
+    <div class="col-md-4 top top_image pt-3 pb-3">
+      <%= link_to category_path(@category13), target: "_blank" do%>
+        <%= image_tag @category13.image, class: "rounded-1" %>
+        <p><%= @category13.name %></p>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row mx-auto my-auto">
+    <div class="col-md-8 top_image pt-3 pb-3">
+      <%= link_to category_path(@category1), target: "_blank" do%>
+        <%= image_tag @category1.image, class: "rounded-1" %>
+        <p class="top_image_title"><%= @category1.name %></p>
+      <% end %>
+    </div>
+    <div class="col-md-4 top top_image pt-3 pb-3">
+      <%= link_to category_path(@category18), target: "_blank" do%>
+        <%= image_tag @category18.image, class: "rounded-1" %>
+        <p class="top_image_title"><%= @category18.name %></p>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row mx-auto my-auto">
+    <div class="col-md-4 top top_image pt-3 pb-3">
+      <%= link_to category_path(@category23), target: "_blank" do%>
+        <%= image_tag @category23.image, class: "rounded-1" %>
+        <p><%= @category23.name %></p>
+      <% end %>
+    </div>
+    <div class="col-md-4 top top_image pt-3 pb-3">
+      <%= link_to category_path(@category17), target: "_blank" do%>
+        <%= image_tag @category17.image, class: "rounded-1" %>
+        <p><%= @category17.name %></p>
+      <% end %>
+    </div>
+    <div class="col-md-4 top top_image pt-3 pb-3">
+      <%= link_to category_path(@category16), target: "_blank" do%>
+        <%= image_tag @category16.image, class: "rounded-1" %>
+        <p><%= @category16.name %></p>
       <% end %>
     </div>
   </div>

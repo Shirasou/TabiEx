@@ -1,8 +1,20 @@
-<h1>投稿一覧</h1>
-<% @tag_lists.each do |tag| %>
-  <span>
-  <%= link_to tag.name, tag_trips_path(tag_id: tag.id) %>
-  <%= tag.trips.count %>
-  </sapn>
-<% end %>
-<%= render 'index', trips: @trips, tag_lists: @tag_lists %>
+<div class="ly_main">
+  <h1 class="text-center">Trips</h1>
+  <div class="text-center mb-3">
+    <% @tag_lists.each do |tag| %>
+      <span>
+        <%= link_to tag.name, tag_trips_path(tag_id: tag.id) %> /
+      </sapn>
+    <% end %>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row mx-auto my-suto">
+    <%= render 'index', trips: @trips %>
+  </div>
+</div>
+<div class="container">
+  <div class="row justify-content-center">
+  <%= paginate @trips %>
+  </div>
+</div>
