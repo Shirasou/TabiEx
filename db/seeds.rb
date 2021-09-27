@@ -17,9 +17,9 @@
   end
 
   category = Category.create(name: 'Japan')
-  category.image.attach(io: File.open(Rails.root.join('db/images/Japan.jpg')), filename: 'Japan.jpg')
+  category.image.attach(io: File.open(Rails.root.join('db/images/Japan.jpg')), filename: 'Japan.jpg', content_type: 'image/jpg')
   category = Category.create(name: 'America')
-  category.image.attach(io: File.open(Rails.root.join('db/images/America.jpg')), filename: 'America.jpg')
+  category.image.attach(io: File.open(Rails.root.join('db/images/America.jpg')), filename: 'America.jpg', content_type: 'image/jpg')
   category = Category.create(name: 'Britain')
   category.image.attach(io: File.open(Rails.root.join('db/images/Britain.jpg')), filename: 'Britain.jpg')
   category = Category.create(name: 'France')
@@ -48,8 +48,8 @@
   category.image.attach(io: File.open(Rails.root.join('db/images/Taiwan.jpg')), filename: 'Taiwan.jpg')
   category = Category.create(name: 'Vietnam')
   category.image.attach(io: File.open(Rails.root.join('db/images/Vietnam.jpg')), filename: 'Vietnam.jpg')
-  category = Category.create(name: 'Thailamd')
-  category.image.attach(io: File.open(Rails.root.join('db/images/Thailamd.jpg')), filename: 'Thailamd.jpg')
+  category = Category.create(name: 'Thailand')
+  category.image.attach(io: File.open(Rails.root.join('db/images/Thailand.jpg')), filename: 'Thailand.jpg')
   category = Category.create(name: 'Singapore')
   category.image.attach(io: File.open(Rails.root.join('db/images/Singapore.jpg')), filename: 'Singapore.jpg')
   category = Category.create(name: 'Malaysia')

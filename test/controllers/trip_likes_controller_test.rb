@@ -15,5 +15,4 @@ class TripLikesControllerTest < ActionDispatch::IntegrationTest
     get trip_likes_destroy_url
     assert_response :success
   end
-
 end

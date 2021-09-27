@@ -1,11 +1,11 @@
 class TripsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:index]
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
   def index
     @tag_lists = Tag.all
-    @trips = Trip.all
+    @trips = Trip.page(params[:page]).per(6)
   end
 
   def new
@@ -19,7 +19,7 @@ class TripsController < ApplicationController
     @trip.user_id = current_user.id
     if @trip.save
       @trip.save_tag(tag_list)
-      flash[:success] = "作成しました"
+      flash[:notice] = "投稿しました"
       redirect_to trips_path
     else
       render :new
@@ -33,18 +33,19 @@ class TripsController < ApplicationController
   end
 
   def search
-    @tag_list = Tag.all
     @tag = Tag.find(params[:tag_id])
-    @trips = @tag.trips.all
+    @trips = @tag.trips.page(params[:page]).per(6)
   end
 
   def edit
   end
 
   def update
-   @trip.images.detach #一旦、すべてのimageの紐つけを解除
+    # 一旦、すべてのimageの紐つけを解除
+    @trip.images.detach
     if @trip.update(trip_params)
-      redirect_to @trip, notice: 'Item was successfully updated.'
+      redirect_to @trip
+      flash[:notice] = "編集しました"
     else
       render :edit
     end
@@ -52,15 +53,15 @@ class TripsController < ApplicationController
 
   def destroy
     @trip.destroy
-    flash[:success] = "削除しました"
+    flash[:notice] = "削除しました"
     redirect_to trips_path
   end
 
   def upload_image
-      @image_blob = create_blob(params[:image])
-      respond_to do |format|
-        format.json { @image_blob }
-      end
+    @image_blob = create_blob(params[:image])
+    respond_to do |format|
+      format.json { @image_blob }
+    end
   end
 
   private
@@ -70,11 +71,15 @@ class TripsController < ApplicationController
   end
 
   def trip_params
-    params.require(:trip).permit(:date, :city, :title, :description, :evaluation, :category_id).merge(images: uploaded_images)
+    if params[:trip][:images]
+      params.require(:trip).permit(:date, :city, :title, :description, :evaluation, :category_id).merge(images: uploaded_images)
+    else
+      params.require(:trip).permit(:date, :city, :title, :description, :evaluation, :category_id)
+    end
   end
 
   def uploaded_images
-    params[:trip][:images].map{|id| ActiveStorage::Blob.find(id)} if params[:trip][:images]
+    params[:trip][:images].map { |id| ActiveStorage::Blob.find(id) } if params[:trip][:images]
   end
 
   def ensure_correct_user

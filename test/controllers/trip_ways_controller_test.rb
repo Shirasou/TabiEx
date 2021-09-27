@@ -30,5 +30,4 @@ class TripWaysControllerTest < ActionDispatch::IntegrationTest
     get trip_ways_update_url
     assert_response :success
   end
-
 end

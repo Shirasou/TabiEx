@@ -1,7 +1,7 @@
 <div class="mt-2">
   <% unless user.id == current_user.id %>
-    <% if isRoom == true %>
-      <%= link_to "チャットへ", room_path(roomId), class: "btn btn-sm btn-outline-primary" %>
+    <% if is_room == true %>
+      <%= link_to "チャットへ", room_path(room_id), class: "btn btn-sm btn-outline-primary" %>
     <% else %>
       <%= form_with model: room, local: true do |f| %>
         <%= fields_for entry do |e| %>

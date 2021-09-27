@@ -1,10 +1,10 @@
 class TripWaysController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:index]
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
   before_action :set_trip_way, only: [:show, :edit, :update, :destroy]
 
   def index
-    @trip_ways = TripWay.all
+    @trip_ways = TripWay.page(params[:page]).per(3)
     @tag_lists = Tag.all
   end
 
@@ -18,7 +18,7 @@ class TripWaysController < ApplicationController
     @trip_way = TripWay.new(trip_way_params)
     @trip_way.user_id = current_user.id
     if @trip_way.save
-      flash[:success] = "作成しました"
+      flash[:notice] = "作成しました"
       redirect_to trip_ways_path
     else
       render :new
@@ -33,11 +33,15 @@ class TripWaysController < ApplicationController
   end
 
   def edit
+    @trips = current_user.trips.all
+    @trip_way.trip_way_relations.build
   end
 
   def update
-    if trip_way.update(trip_way_params)
-      redirect_to trip_way_path(@trip_way), notice: "You have updated book successfully."
+    @trip_way.trip_way_relations.delete_all
+    if @trip_way.update(trip_way_params)
+      flash[:notice] = "編集しました"
+      redirect_to trip_way_path(@trip_way)
     else
       render "edit"
     end
@@ -45,7 +49,7 @@ class TripWaysController < ApplicationController
 
   def destroy
     @trip_way.destroy
-    flash[:success] = "削除しました"
+    flash[:notice] = "削除しました"
     redirect_to trip_ways_path
   end
 
@@ -56,7 +60,9 @@ class TripWaysController < ApplicationController
   end
 
   def trip_way_params
-    params.require(:trip_way).permit(:title, :evaluation, :description, :start_date, :finish_date, :number_of_people, trip_way_relations_attributes:[:trip_id, :trip_way_id, :number])
+    params.require(:trip_way).permit(:title, :evaluation, :description, :start_date,
+    :finish_date, :number_of_people,
+    trip_way_relations_attributes: [:trip_id, :trip_way_id, :number, :_destroy])
   end
 
   def ensure_correct_user
