@@ -1,0 +1,59 @@
+<div class="container ly_main">
+  <%= render 'layouts/errors', obj: @user %>
+</div>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <h2 class="text-center">Edit User</h2>
+  </div>
+</div>
+<%= form_with model: @user do |f| %>
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-md-auto">
+        <div class="images-field clearfix">
+          <div class="field text-left mb-2">
+            <h5>Image</h5>
+            <%= f.file_field :image, autofocus: true, class: "file-input" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-md-4">
+
+        <div class="mb-3">
+          <%= f.label :name, class: "h5" %>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :email %>
+          <%= f.text_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :sex %>
+          <%= f.select :sex, User.sexes.keys, {prompt: "選択してください"}, autofocus: true, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :birth_at %>
+          <%= f.date_field :birth_at, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="mb-3">
+          <%= f.label :introduction %>
+          <%= f.text_area :introduction, size: "20x10", class: "form-control" %>
+        </div>
+        <div class="text-right">
+          <%= f.submit "変更", class: "btn btn-outline-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

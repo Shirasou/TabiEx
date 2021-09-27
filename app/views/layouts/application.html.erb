@@ -5,11 +5,69 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+<<<<<<< HEAD
+=======
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300&display=swap" rel="stylesheet">
+>>>>>>> develop
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   </head>
 
   <body>
+<<<<<<< HEAD
     <%= yield %>
+=======
+    <header>
+      <h1 class="header_title" style="font-family: 'Comfortaa', cursive;">
+        <%= link_to "TabiEx", root_path, :style => "color: black; text-decoration: none;" %>
+      </h1>
+
+      <nav class="ly_nav">
+        <ul class="nav-menu">
+
+          <% if user_signed_in? %>
+            <li><%= link_to "My Page", user_path(current_user) %></li>
+            <li><%= link_to "Users", users_path %></li>
+            <li><%= link_to "Trips", trips_path %></li>
+            <li><%= link_to "Trip_Ways", trip_ways_path %></li>
+            <li><%= link_to "Create Trip", new_trip_path %></li>
+            <li><%= link_to "Create Trip Way", new_trip_way_path %></li>
+            <% if unchecked_notifications.any? %>
+              <i class="fa fa-circle" style="color: gold;"></i>
+            <% end %>
+            <li><%= link_to "Notice", notifications_path %></li>
+            <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+
+          <% else %>
+            <li><%= link_to "Log in", new_user_session_path %></li>
+            <li><%= link_to "Trips", trips_path %></li>
+            <li><%= link_to "Trip_Ways", trip_ways_path %></li>
+            <li><%= link_to "Sign up", new_user_registration_path %></li>
+
+          <% end %>
+        </ul>
+      </nav>
+
+      <div class="toggle_btn my-auto">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div id="mask"></div>
+    </header>
+
+
+     <div class='body'>
+      <p id="notice"><%= notice %></p>
+      <%= yield %>
+    </div>
+    <footer id="footer" class="mt-5">
+      <p>@TabiEx</p>
+    </footer>
+>>>>>>> develop
   </body>
 </html>

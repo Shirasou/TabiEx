@@ -1,0 +1,61 @@
+<%= form_with model: trip_way, local:true do |f| %>
+<div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-md-auto">
+          <h5>Trip</h5>
+          <div id="trip_way_relations">
+            <%= f.fields_for :trip_way_relations do |trip| %>
+            <%= render 'trip_way_relation_fields', f: trip %>
+            <% end %>
+          
+              <div id="links">
+                <%= link_to_add_association "add trip", f, :trip_way_relations, class: "mt-2 btn btn-sm btn-secondary" %><br/>
+              </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-md-4">
+        <div class="mb-3">
+          <h5>Evaluation</h5>
+          <span id="evaluation_stars"></span>
+        </div>
+
+        <div class="mb-3">
+          <h5>Title</h5>
+          <%= f.text_field :title, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <h5>Start Date</h5>
+          <%= f.date_field :start_date, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <h5>Finish Date</h5>
+          <%= f.date_field :finish_date, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <h5>Number of People</h5>
+          <%= f.number_field :number_of_people, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="mb-3">
+          <h5>Description</h5>
+          <%= f.text_area :description, size: "20x10", class: "form-control" %>
+        </div>
+        <div class="text-right">
+          <%= f.submit class: "btn btn-outline-primary" %>
+        </div>
+      </div>
+
+
+  </div>
+</div>
+<% end %>

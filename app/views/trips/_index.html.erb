@@ -1,0 +1,30 @@
+<% trips.each do |trip| %>
+  <div class="col-md-4 mb-3">
+    <div class="border border-dark rounded border-3 bg-white">
+      <%= link_to trip_path(trip), class: "link" do %>
+        <div id="trip_<%= trip.id %>">
+          <div class="text-right pr-3">
+            <%= trip.created_at.strftime("%Y/%m/%d") %>
+          </div>
+          <div class="slider">
+            <% trip.images.each do |image| %>
+              <div>
+                <%= image_tag image, class: "slider-index-img rounded-1 border-top border-bottom border-dark border-3" %>
+              </div>
+            <% end %>
+          </div>
+          <div class="trip-title">
+            <%= trip.category.name %>
+          </div>
+          <div class="pt-2 pl-3 small">
+            <%= trip.title %>
+          </div>
+          <div class="pb-2 pl-2 small">
+            City:<span class="h5"><%= trip.city %></span>
+          </div>
+
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
