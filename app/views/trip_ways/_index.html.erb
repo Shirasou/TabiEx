@@ -12,10 +12,10 @@
   </div>
 
   <div class="col-md-9">
-    <div class="row flex-nowrap">
+    <div class="row flex-nowrap overflow">
       <% trip_count = 1 %>
       <% trip_way.trip_way_relations.each do |f| %>
-        <div class="col-md-6 mb-3">
+        <div class="col-md-6 mt-3 mb-3">
           <div class="border border-dark rounded border-3 bg-white">
             <%= link_to trip_path(f.trip), class: "link" do %>
               <div class="text-right pr-3">

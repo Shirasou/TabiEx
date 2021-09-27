@@ -1,16 +1,14 @@
-<h2>投稿一覧</h2>
-<% @tag_list.each do |list| %>
-  <span>
-  <%= link_to list.name, tag_trips_path(tag_id: list.id) %>
-  <%= list.trips.count %>
-  </sapn>
-<% end %>
-
 <div>
-  <h4>タグが
-  <strong>
-    <%= @tag.name %>
-  </strong>
-  の投稿一覧</h4>
+  <%= image_tag "Tag.jpeg", class: "show-img", style: "background-color: rgba(0,0,0,.5);" %>
 </div>
-<%= render 'index', trips: @trips %>
+<h2 class="search_title">Tags search for "<%= @tag.name %>"</h2>
+<div class="container-fluid mt-5">
+  <div class="row mx-auto my-suto">
+    <%= render 'trips/index', trips: @trips %>
+  </div>
+</div>
+<div class="container">
+  <div class="row justify-content-center">
+  <%= paginate @trips %>
+  </div>
+</div>

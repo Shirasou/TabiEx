@@ -33,6 +33,12 @@ body {
 #notice {
   position: absolute;
 }
+#footer {
+  font-size: 0.5rem;
+  padding: 10px 0;
+  text-align: center;
+  bottom: 0;
+}
 .form-center {
   width: 100%;
   max-width: 330px;
@@ -228,7 +234,7 @@ ol li{
   text-align: center;
   position: absolute;
   bottom: -50px;
-  font-size: 100px;
+  font-size: 90px;
 }
 .category_title {
   width: 140%;
@@ -236,7 +242,7 @@ ol li{
   padding: 50px 0;
   text-align: center;
   position: absolute;
-  top: 357px;
+  top: 361px;
   font-size: 200px;
 }
 .search_title {
@@ -277,7 +283,7 @@ ol li{
   text-align: center;
   position: absolute;
   bottom: -50px;
-  font-size: 100px;
+  font-size: 90px;
 }
 .show-img {
   padding-top: 95px;
@@ -297,7 +303,7 @@ header {
 }
 
 
-nav {
+.ly_nav {
   display: block;
   position: fixed;
   top: 0;
@@ -313,23 +319,23 @@ nav {
   z-index: 20;
   opacity: 0;
 }
-nav a {
+.ly_nav a {
   color: #fff;
   text-decoration: none;
 }
-.open nav {
+.open .ly_nav {
   left: 0;
   opacity: 1;
 }
-nav ul {
+.ly_nav ul {
   margin: 0;
   padding: 0;
 }
-nav ul.nav-menu {
+.ly_nav ul.nav-menu {
   margin-bottom: 60px;
   border-top: solid 1px #fff;
 }
-nav ul.nav-menu li {
+.ly_nav ul.nav-menu li {
   position: relative;
   margin: 0;
   padding: 20px 0;
@@ -457,4 +463,7 @@ nav ul.nav-menu li {
 }
 .form-chat:focus {
   box-shadow: none !important;
+}
+.overflow {
+  overflow: auto;
 }

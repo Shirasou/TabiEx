@@ -20,7 +20,7 @@
         <%= link_to "TabiEx", root_path, :style => "color: black; text-decoration: none;" %>
       </h1>
 
-      <nav>
+      <nav class="ly_nav">
         <ul class="nav-menu">
 
           <% if user_signed_in? %>
@@ -33,7 +33,7 @@
             <% if unchecked_notifications.any? %>
               <i class="fa fa-circle" style="color: gold;"></i>
             <% end %>
-            <li><%= link_to "NOTICE", notifications_path %></li>
+            <li><%= link_to "Notice", notifications_path %></li>
             <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
 
           <% else %>
@@ -56,13 +56,11 @@
 
 
      <div class='body'>
-      <div class='container-fluid'>
-        <p id="notice"><%= notice %></p>
-        <%= yield %>
-      </div>
+      <p id="notice"><%= notice %></p>
+      <%= yield %>
     </div>
-    <footer>
-
+    <footer id="footer" class="mt-5">
+      <p>@TabiEx</p>
     </footer>
   </body>
 </html>

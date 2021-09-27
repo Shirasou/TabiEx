@@ -3,22 +3,20 @@ class UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
 
   def index
-    @users = User.all
+    @users = User.page(params[:page]).per(6)
     @user = current_user
-    @trips = @user.trips
-    @trip_ways = @user.trip_ways
-    @currentUserEntry = Entry.where(user_id: current_user.id)
-    @userEntry = Entry.where(user_id: @user.id)
+    @user_entry1 = Entry.where(user_id: current_user.id)
+    @user_entry2 = Entry.where(user_id: @user.id)
     unless @user.id == current_user.id
-      @currentUserEntry.each do |cu|
-        @userEntry.each do |u|
+      @user_entry1.each do |cu|
+        @user_entry2.each do |u|
           if cu.room_id == u.room_id
-            @isRoom = true
-            @roomId = cu.room_id
+            @is_room = true
+            @room_id = cu.room_id
           end
         end
       end
-      unless @isRoom
+      unless @is_room
         @room = Room.new
         @entry = Entry.new
       end
@@ -27,20 +25,20 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @trips = @user.trips
-    @trip_ways = @user.trip_ways
-    @currentUserEntry = Entry.where(user_id: current_user.id)
-    @userEntry = Entry.where(user_id: @user.id)
+    @trips = @user.trips.page(params[:page]).per(6)
+    @trip_ways = @user.trip_ways.page(params[:page]).per(3)
+    @user_entry1 = Entry.where(user_id: current_user.id)
+    @user_entry2 = Entry.where(user_id: @user.id)
     unless @user.id == current_user.id
-      @currentUserEntry.each do |cu|
-        @userEntry.each do |u|
+      @user_entry1.each do |cu|
+        @user_entry2.each do |u|
           if cu.room_id == u.room_id
-            @isRoom = true
-            @roomId = cu.room_id
+            @is_room = true
+            @room_id = cu.room_id
           end
         end
       end
-      unless @isRoom
+      unless @is_room
         @room = Room.new
         @entry = Entry.new
       end
@@ -52,24 +50,14 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to user_path(@user), notice: "You have updated user successfully."
+      redirect_to user_path(@user)
+      flash[:notice] = "編集しました。"
     else
       render "edit"
     end
   end
 
-  def unsubscribe
-    @user = current_user
-  end
-
-  def withdraw
-    @user = current_user
-    @user.update(is_valid: false)
-    reset_session
-    redirect_to root_path, notice: "退会しました"
-  end
-
- private
+  private
 
   def user_params
     params.require(:user).permit(:name, :introduction, :sex, :birth_at, :image)

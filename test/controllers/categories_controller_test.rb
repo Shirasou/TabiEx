@@ -15,5 +15,4 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
     get categories_update_url
     assert_response :success
   end
-
 end

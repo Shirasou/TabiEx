@@ -55,10 +55,7 @@ $(document).on('turbolinks:load', function() {
   fade: true,
   cssEase: 'linear'
   });
-});
-
-$(function() {
-   $('.slider-for').slick({
+  $('.slider-for').slick({
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
@@ -76,7 +73,7 @@ $(function() {
 });
 
 //ドロップダウンの設定を関数でまとめる
-function mediaQueriesWin(){
+$(document).on('turbolinks:load', function mediaQueriesWin(){
   var width = $(window).width();
   if(width <= 768) {//横幅が768px以下の場合
     $(".has-child>a").off('click'); //has-childクラスがついたaタグのonイベントを複数登録を避ける為offにして一旦初期状態へ
@@ -91,7 +88,7 @@ function mediaQueriesWin(){
     $(".has-child>a").removeClass('active');//activeクラスを削除
     $('.has-child').children('ul').css("display","");//スライドトグルで動作したdisplayも無効化にする
   }
-}
+});
 
 // ページがリサイズされたら動かしたい場合の記述
 $(window).resize(function() {
