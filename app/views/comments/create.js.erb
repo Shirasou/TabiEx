@@ -1,0 +1,3 @@
+$("#trip_<%= @trip.id %> .comments-count").html("コメント数: <%= @trip.comments.count %>");
+$(".comments").html("<%= j(render 'comments/index', trip: @trip) %>");
+$("#comment_comment").val("");

@@ -1,0 +1,20 @@
+<div class="container-fluid ly_main">
+  <div class="row justify-cont">
+    <div class="col-md-3 text-center">
+      <%= render 'users/info', user: @user %>
+    </div>
+    <div class="col-md-9">
+      <h2>Follow Users</h2>
+      <% if @users.exists? %>
+        <div class="container-fluid mt-3">
+          <div class="row mx-auto my-suto">
+            <%= render 'users/index', users: @users %>
+          </div>
+        </div>
+      <% else %>
+        <p>ユーザーはいません</p>
+      <% end %>
+    </div>
+  </div>
+  <%= paginate @users %>
+</div>

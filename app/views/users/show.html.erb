@@ -1,0 +1,45 @@
+<div class="container-fluid ly_main">
+	<div class="row">
+		<div class="col-md-3 text-center">
+		  <%= render 'info', user: @user %>
+		  <%= render 'room-btn', {user: @user, is_room: @is_room, room_id: @room_id, room: @room, entry: @entry} %>
+		</div>
+
+		<div class="col-md-9">
+			<ul class="nav nav-pills nav-fill">
+			  <li class="nav-item">
+			  	<a class="nav-link active" data-toggle="tab" href="#trip">Trip</a>
+			  </li>
+			  <li class="nav-item">
+			  	<a class="nav-link" data-toggle="tab" href="#trip_way">Trip Way</a>
+			  </li>
+			</ul>
+			<div class="tab-content">
+			  <div id="trip" class="tab-pane active">
+			  	<div class="container-fluid mt-3">
+  					<div class="row mx-auto my-suto">
+							<%= render 'trips/index', trips: @trips %>
+						</div>
+					</div>
+					<div class="container-fluid">
+					  <div class="row justify-content-center">
+					  	<%= paginate @trips %>
+					  </div>
+					</div>
+			  </div>
+			  <div id="trip_way" class="tab-pane">
+			  	<div class="container-fluid mt-3">
+  					<div class="row mx-auto my-suto">
+							<%= render 'trip_ways/index', trip_ways: @trip_ways %>
+						</div>
+					</div>
+					<div class="container-fluid">
+					  <div class="row justify-content-center">
+					  	<%= paginate @trip_ways %>
+					  </div>
+					</div>
+			  </div>
+			</div>
+		</div>
+	</div>
+</div>
