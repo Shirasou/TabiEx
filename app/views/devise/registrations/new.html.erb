@@ -6,11 +6,7 @@
   <%= render "devise/shared/error_messages", resource: resource %>
   <h2>Sign up</h2>
 
-<<<<<<< HEAD
-   <div class="field">
-=======
   <div class="mb-3">
->>>>>>> develop
     <%= f.label :name %><br />
     <%= f.text_field :name, autofocus: true, class: "form-control", placeholder: "Name" %>
   </div>
@@ -20,16 +16,12 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email address" %>
   </div>
 
-<<<<<<< HEAD
-   <div class="field">
-=======
   <div class="mb-3">
     <%= f.label :sex %><br />
     <%= f.select :sex, User.sexes.keys, {prompt: "選択してください"}, autofocus: true, class: "custom-select" %>
   </div>
 
    <div class="mb-3">
->>>>>>> develop
     <%= f.label :birth_at %><br />
     <%= f.date_field :birth_at, autofocus: true, class: "form-control" %>
   </div>

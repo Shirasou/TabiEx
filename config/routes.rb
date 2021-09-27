@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-<<<<<<< HEAD
   root to: 'homes#top'
-=======
   resources :trips do
     resource :trip_likes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
@@ -23,5 +21,4 @@ Rails.application.routes.draw do
   delete 'notifications' => 'notifications#all_destroy', as: 'notifications_all_destroy'
   resources :categories, only: [:create, :show]
   get '/search', to: 'searches#search'
->>>>>>> develop
 end
