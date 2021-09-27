@@ -1,53 +1,17 @@
-<h1>投稿フォーム</h1>
-<%= form_with model: @trip_way, local:true do |f| %>
-
-  <div>
-  <h4>タイトル</h4>
-  <%= f.text_field :title %>
+<div class="container ly_main">
+  <%= render 'layouts/errors', obj: @trip_way %>
+</div>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <h2 class="text-center">Create Trip Way</h2>
   </div>
-
-  <div>
-  <h4>評価</h4>
-　<span id="evaluation_stars"></span>
-  </div>
-
-  <div>
-  <h4>旅行</h4>
-  <%= f.fields_for :trip_way_relations do |trip| %>
-  <%= render 'trip_way_relation_fields', f: trip %>
-    <div id="links">
-      <%= link_to_add_association "add trip", f, :trip_way_relations %><br/>
-    </div>
-　  <% end %>
-  </div>
-
-
-  <div>
-  <h4>出発日</h4>
-  <%= f.date_field :start_date %>
-  </div>
-
-  <div>
-  <h4>帰宅日</h4>
-  <%= f.date_field :finish_date %>
-  </div>
-
-  <div>
-  <h4>人数</h4>
-  <%= f.number_field :number_of_people %>
-  </div>
-
-  <div>
-  <h4>説明</h4>
-  <%= f.text_area :description %>
-  </div>
-
-  <%= f.submit '投稿' %>
-<% end %>
+</div>
+<%= render 'form', trip_way: @trip_way %>
+  
 
 <script>
   $('#evaluation_stars').raty({
-    size: 36,
+    size: 20,
     starOff: "<%= asset_path('star-off.png') %>",
     starOn: "<%= asset_path('star-on.png') %>",
     starHalf: "<%= asset_path('star-half.png') %>",

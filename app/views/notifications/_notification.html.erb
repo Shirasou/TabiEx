@@ -1,9 +1,29 @@
 <% visitor = notification.visitor %>
 <% trip = notification.trip %>
-<div class="user-view clearfix">
-  <%= notification_form(notification) %><span><%= " (#{time_ago_in_words(notification.created_at)} 前)" %></span>
-  <br>
-  <% if !@comment.nil? %>
-    <p class="moderate-font text-center" style="color: #C0C0C0;"><%= @comment %></p>
-  <% end %>
+<div class="card-body notification_card-body py-3">
+  <div class="row no-gutters align-items-center">
+    <div class="col">
+      <%= notification_form(notification) %>
+      <div>
+        <% if !@comment.nil? %>
+          <p class="moderate-font text-center" style="color: #C0C0C0;"><%= @comment %></p>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="row no-gutters align-items-center">
+        <div class="media">
+          <% if visitor.image.attached? %>
+            <%= image_tag visitor.image, class: "rounded-circle" %>
+          <% else %>
+            <%= image_tag 'no-img.jpg', class: "d-block ui-w-30 rounded-circle" %>
+          <% end %>
+          <div class="media-body flex-truncate ml-2">
+            <div class="line-height-1 text-truncate"><%= " (#{time_ago_in_words(notification.created_at)} 前)" %></div>
+            <a class="text-muted small text-truncate"><%= visitor.name %></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -6,46 +6,51 @@ class Trip < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :trip_likes, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  has_many :trip_way_relations, dependent: :destroy
   has_many_attached :images
 
+  validates :category_id, presence: true
+  validates :title, presence: true, length: { maximum: 30 }
+  validates :date, presence: true
+  validates :description, presence: true, length: { maximum: 200 }
+  validates :city, presence: true
+  validates :images, presence: true
   validates :evaluation, numericality: {
     less_than_or_equal_to: 5,
     greater_than_or_equal_to: 1
   }, presence: true
 
-
   def trip_liked_by?(user)
     trip_likes.where(user_id: user.id).exists?
   end
 
-  #タグ機能
+  # タグ機能
   def save_tag(sent_tags)
-    current_tags = self.tags.pluck(:name) unless self.tags.nil?
+    current_tags = tags.pluck(:name) unless tags.nil?
     old_tags = current_tags - sent_tags
     new_tags = sent_tags - current_tags
 
     old_tags.each do |old|
-      self.tags.delete Tag.find_by(name: old)
+      tags.delete Tag.find_by(name: old)
     end
 
     new_tags.each do |new|
       new_tag = Tag.find_or_create_by(name: new)
-      self.tags << new_tag
+      tags << new_tag
     end
   end
 
-  #検索機能
-  def self.search_for(content,method)
+  # 検索機能
+  def self.search_for(content, method)
     if method == 'perfect'
       Trip.where(title: content)
     elsif method == 'forward'
-      Trip.where('title LIKE ?', content + '%' )
+      Trip.where('title LIKE ?', content + '%')
     elsif method == 'backward'
-      Trip.where('title LIKE ?', '%' + content )
+      Trip.where('title LIKE ?', '%' + content)
     else
-      Trip.where('title LIKE ?', '%' + content + '%' )
+      Trip.where('title LIKE ?', '%' + content + '%')
     end
-
   end
 
   # 通知機能
@@ -81,5 +86,9 @@ class Trip < ApplicationRecord
       notification.checked = true
     end
     notification.save if notification.valid?
+  end
+
+  def old_image
+    images.order(id: 'ASC').first
   end
 end

@@ -1,35 +1,30 @@
 <% trips.each do |trip| %>
-<div id="trip_<%= trip.id %>">
-<div>
-  <% trip.images.each do |image| %>
-  <%= image_tag image.variant(resize: "150x150") %>
-  <% end %>
-  <p>評価：
-  <span class="trip-evaluation" data-score="<%= trip.evaluation %>"></span>
-  </p>
-  <p>タイトル：<%= trip.title %></p>
-  <p>国：<%= trip.category.name %></p>
-  <p>都市：<%= trip.city %></p>
-  <p>時間帯：<%= trip.date_time %></p>
-    <span>
-      <p>タグ：
-        <% trip.tags.each do |tag| %>
-        <%= link_to tag.name, tag_trips_path(tag_id: tag.id) %>
-        <% end %>
-      </p>
-    </sapn>
+  <div class="col-md-4 mb-3">
+    <div class="border border-dark rounded border-3 bg-white">
+      <%= link_to trip_path(trip), class: "link" do %>
+        <div id="trip_<%= trip.id %>">
+          <div class="text-right pr-3">
+            <%= trip.created_at.strftime("%Y/%m/%d") %>
+          </div>
+          <div class="slider">
+            <% trip.images.each do |image| %>
+              <div>
+                <%= image_tag image, class: "slider-index-img rounded-1 border-top border-bottom border-dark border-3" %>
+              </div>
+            <% end %>
+          </div>
+          <div class="trip-title">
+            <%= trip.category.name %>
+          </div>
+          <div class="pt-2 pl-3 small">
+            <%= trip.title %>
+          </div>
+          <div class="pb-2 pl-2 small">
+            City:<span class="h5"><%= trip.city %></span>
+          </div>
 
-  <p>説明：<%= trip.description %></p>
-  <p><%= link_to "Show", trip_path(trip) %></p>
-</div>
-</div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 <% end %>
-<script>
-  $('.trip-evaluation').raty({
-    readOnly: true,
-    score: function() {
-      return $(this).attr('data-score');
-    },
-    path: '/assets/'
-  });
-</script>

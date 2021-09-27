@@ -1,33 +1,71 @@
-<%= form_with model: @trip, local:true do |f| %>
-  <div class="images-field">
-  <h4>画像</h4>
-  <%= f.file_field :image, multiple: true %>
+<%= form_with model: trip, local: true do |f| %>
+
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-md-auto">
+        <div class="images-field clearfix">
+          <div class="field text-left mb-2">
+            <h5>Image</h5>
+            <%= f.file_field :images, multiple: true, class: "file-input" %>
+          </div>
+          <% if trip.images.attached? %>
+            <% trip.images.each do |image| %>
+              <div class="image-box">
+                <%= image_tag image %>
+                <%= f.hidden_field :images , name: "trip[images][]", value: "#{image.blob.id}", style: "display: none;", class: "trip-images-input" %>
+                <%= file_field "edit-image","" , class: "edit-image-file-input file-input", style: "display: none;"%>
+                <%= link_to "Delete", "", class: "btn-delete" %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div>
-  <h4>評価</h4>
-　<span id="evaluation_stars"></span>
-  </div>
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-md-4">
+        <div class="mb-3" id="evaluation_stars">
+          <h5>Evaluation</h5>
+        </div>
 
-  <div>
-  <h4>タイトル</h4>
-  <%= f.text_field :title %>
-  </div>
+        <div class="mb-3">
+          <h5>Title</h5>
+          <%= f.text_field :title, class: "form-control" %>
+        </div>
 
-  <div>
-  <h4>都市</h4>
-  <%= f.text_field :city %>
-  </div>
+        <div class="mb-3">
+          <h5>Country</h5>
+          <%= f.collection_select :category_id, Category.all, :id, :name, {:include_blank => "選択してください"}, class: "form-control" %>
+        </div>
 
-  <div>
-  <h4>時刻</h4>
-  <%= f.time_select :date_time %>
-  </div>
+        <div class="mb-3">
+          <h5>City</h5>
+          <%= f.text_field :city, class: "form-control" %>
+        </div>
 
-  <div>
-  <h4>説明</h4>
-  <%= f.text_area :description %>
-  </div>
+        <div class="mb-3">
+          <h5>Date</h5>
+          <%= f.date_field :date, class: "form-control" %>
+        </div>
 
-  <%= f.submit '投稿' %>
+        <div class="mb-3">
+          <h5>Tag</h5>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="mb-3">
+          <h5>Description</h5>
+          <%= f.text_area :description, size: "20x10", class: "form-control" %>
+        </div>
+        <div class="text-right">
+          <%= f.submit class: "btn btn-outline-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>
+

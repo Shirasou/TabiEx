@@ -1,11 +1,11 @@
 class TripsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:index]
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
   def index
     @tag_lists = Tag.all
-    @trips = Trip.all
+    @trips = Trip.page(params[:page]).per(6)
   end
 
   def new
@@ -19,7 +19,7 @@ class TripsController < ApplicationController
     @trip.user_id = current_user.id
     if @trip.save
       @trip.save_tag(tag_list)
-      flash[:success] = "作成しました"
+      flash[:notice] = "投稿しました"
       redirect_to trips_path
     else
       render :new
@@ -27,27 +27,25 @@ class TripsController < ApplicationController
   end
 
   def show
+    @user = @trip.user
     @comment = Comment.new
+    @old_image = @trip.old_image
   end
 
   def search
-    @tag_list = Tag.all
     @tag = Tag.find(params[:tag_id])
-    @trips = @tag.trips.all
+    @trips = @tag.trips.page(params[:page]).per(6)
   end
 
   def edit
   end
 
   def update
-    if params[:trip][:image_ids]
-      params[:trip][:image_ids].each do |image_id|
-        image = @trip.images.find(image_id)
-        image.purge
-      end
-    end
-    if @trip.update_attributes(trip_params)
-      redirect_to trips_path, notice: "You have updated book successfully."
+    # 一旦、すべてのimageの紐つけを解除
+    @trip.images.detach
+    if @trip.update(trip_params)
+      redirect_to @trip
+      flash[:notice] = "編集しました"
     else
       render :edit
     end
@@ -55,19 +53,33 @@ class TripsController < ApplicationController
 
   def destroy
     @trip.destroy
-    flash[:success] = "削除しました"
+    flash[:notice] = "削除しました"
     redirect_to trips_path
+  end
+
+  def upload_image
+    @image_blob = create_blob(params[:image])
+    respond_to do |format|
+      format.json { @image_blob }
+    end
   end
 
   private
 
   def set_trip
-    @trip = Trip.find(params[:id])
-    @trip_tags = @trip.tags
+    @trip = Trip.with_attached_images.find(params[:id])
   end
 
   def trip_params
-    params.require(:trip).permit(:date_time, :city, :title, :description, :evaluation, :category_id, images: [])
+    if params[:trip][:images]
+      params.require(:trip).permit(:date, :city, :title, :description, :evaluation, :category_id).merge(images: uploaded_images)
+    else
+      params.require(:trip).permit(:date, :city, :title, :description, :evaluation, :category_id)
+    end
+  end
+
+  def uploaded_images
+    params[:trip][:images].map { |id| ActiveStorage::Blob.find(id) } if params[:trip][:images]
   end
 
   def ensure_correct_user
@@ -76,5 +88,12 @@ class TripsController < ApplicationController
     unless @user == current_user
       redirect_to user_path(current_user)
     end
+  end
+
+  def create_blob(uploading_file)
+    ActiveStorage::Blob.create_after_upload! \
+      io: uploading_file.open,
+      filename: uploading_file.original_filename,
+      content_type: uploading_file.content_type
   end
 end

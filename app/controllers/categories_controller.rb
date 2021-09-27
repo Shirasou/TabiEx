@@ -6,12 +6,12 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-    @trips = @category.trips
+    @trips = @category.trips.page(params[:page]).per(6)
   end
 
   private
 
   def category_params
-    params.require(:category).permit(:name)
+    params.require(:category).permit(:name, :image)
   end
 end
