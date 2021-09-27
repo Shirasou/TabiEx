@@ -1,6 +1,6 @@
 <% if @model == 'user' %>
   <div>
-    <%= image_tag "User.jpg", class: "show-img" %>
+    <img src="http://User.jpg" alt="" class-"show-img">
   </div>
   <h2 class="search_title">Users search for "<%= @content %>"</h2>
   <div class="container-fluid mt-5">
@@ -10,7 +10,7 @@
   </div>
 <% elsif @model == 'trip' %>
   <div>
-    <%= image_tag "Trip.jpg", class: "show-img" %>
+    <img src="http://Trip.jpg" alt="" class-"show-img">
   </div>
   <h2 class="search_title">Trips search for "<%= @content %>"</h2>
   <div class="container-fluid mt-5">
@@ -20,7 +20,7 @@
   </div>
 <% elsif @model == 'trip_way' %>
   <div>
-    <%= image_tag "Trip_way.jpg", class: "show-img" %>
+    <img src="http://Trip_way.jpg" alt="" class-"show-img">
   </div>
   <h2 class="search_title">Trip_ways search for "<%= @content %>"</h2>
   <div class="container-fluid mt-5">
