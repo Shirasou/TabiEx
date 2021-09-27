@@ -65,11 +65,11 @@ gem 'devise'
 gem 'image_processing', '~> 1.2'
 gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
-gem 'pry-byebug'
 gem 'kaminari'
 gem 'rubocop-airbnb'
 gem 'dotenv-rails'
 gem 'cocoon'
 group :production do
   gem 'mysql2'
+  gem 'pry-byebug'
 end
