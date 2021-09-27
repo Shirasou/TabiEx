@@ -1,0 +1,11 @@
+<% if obj.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger">
+    <h3><%= pluralize(obj.errors.count, "件") %> のエラーがあります。修正して再度送信して下さい。</h3>
+
+    <ul class="mb-0">
+      <% obj.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
