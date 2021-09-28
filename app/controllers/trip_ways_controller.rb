@@ -5,7 +5,7 @@ class TripWaysController < ApplicationController
 
   def index
     @trip_ways = TripWay.page(params[:page]).per(3)
-    @tag_lists = Tag.order("RAND()").limit(10)
+    @tag_lists = Tag.all
   end
 
   def new

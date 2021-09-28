@@ -4,7 +4,7 @@ class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tag_lists = Tag.order("RAND()").limit(10)
+    @tag_lists = Tag.all
     @trips = Trip.page(params[:page]).per(6)
   end
 

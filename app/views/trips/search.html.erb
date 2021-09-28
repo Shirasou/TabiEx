@@ -1,11 +1,10 @@
 <div>
   <%= image_tag "Tag.jpeg", class: "show-img", style: "background-color: rgba(0,0,0,.5);"  %>
-  <img src="http://Tag.jpeg" alt="" class="show-img" >
 </div>
 <h2 class="search_title">Tags search for "<%= @tag.name %>"</h2>
 <div class="container-fluid mt-5">
   <div class="row mx-auto my-suto">
-    <%= render 'trips/index', trips: @trips %>"background-color: rgba(0,0,0,.5);"
+    <%= render 'trips/index', trips: @trips %>
   </div>
 </div>
 <div class="container">
