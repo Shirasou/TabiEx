@@ -18,6 +18,10 @@ class User < ApplicationRecord
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
   has_one_attached :image
 
+  validates :name, length: { minimum: 2, maximum: 20 }, presence: true
+  validates :sex, presence: true
+  validates :birth_at, presence: true
+  validates :introduction, length: { maximum: 50 }
   enum sex: { 女性: 1, 男性: 2, 該当なし: 3 }
 
   def follow(user_id)
