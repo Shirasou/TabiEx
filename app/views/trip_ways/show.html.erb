@@ -27,11 +27,13 @@
 </div>
 
 <% trip_count = 1 %>
-<% @trip_way.trip_way_relations.each.with_index(1) do |f, i| %>
-  <div class="container-fluid mt-5 pt-3">
-    <div class="number"><%= trip_count %></div>
-    <%= render 'trips/show', trip: f.trip %>
-    <% trip_count = trip_count + 1 %>
+<% @trip_way.trip_way_relations.each. do |f| %>
+  <div id="trip_<%= @trip.id %>">
+    <div class="container-fluid mt-5 pt-3">
+      <div class="number"><%= trip_count %></div>
+      <%= render 'trips/show', trip: f.trip %>
+      <% trip_count = trip_count + 1 %>
+    </div>
   </div>
 <% end %>
 

@@ -34,7 +34,7 @@ class TripWaysController < ApplicationController
 
   def edit
     @trips = current_user.trips.all
-    @trip_way.trip_way_relations.build
+    @trip_way.trip_way_relations
   end
 
   def update

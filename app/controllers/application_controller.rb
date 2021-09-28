@@ -22,6 +22,6 @@ class ApplicationController < ActionController::Base
   end
 
   def set_categories
-    @categories = Category.all
+    @categories = Category.order("RAND()").limit(10)
   end
 end
