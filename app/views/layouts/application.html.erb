@@ -31,7 +31,8 @@
             <li><%= link_to "Create Trip", new_trip_path %></li>
             <li><%= link_to "Create Trip Way", new_trip_way_path %></li>
             <% if unchecked_notifications.any? %>
-              <i class="fa fa-circle" style="color: gold;"></i>
+              <span class="position-absolute translate-middle badge rounded-circle bg-danger p-2" style="left: 15px; top: 455px;">
+              </span>
             <% end %>
             <li><%= link_to "Notice", notifications_path %></li>
             <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>

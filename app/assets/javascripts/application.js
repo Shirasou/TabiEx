@@ -59,16 +59,6 @@ $(document).on('turbolinks:load', function mediaQueriesWin(){
   }
 });
 
-// ページがリサイズされたら動かしたい場合の記述
-$(window).resize('turbolinks:load',function() {
-  mediaQueriesWin();/* ドロップダウンの関数を呼ぶ*/
-});
-
-// ページが読み込まれたらすぐに動かしたい場合の記述
-$(window).on('turbolinks:load',function(){
-  mediaQueriesWin();/* ドロップダウンの関数を呼ぶ*/
-});
-
 // slickの設定
 $(document).on('turbolinks:load', function() {
    $('.slider').slick({
