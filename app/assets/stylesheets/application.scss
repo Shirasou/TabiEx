@@ -129,20 +129,13 @@ ol li{
 .user-name {
   text-align: center;
   position: absolute;
-  top: 175px;
+  top: 0px;
+  left: 30px;
   display: inline-block;
-  color: #ffffff;
+  color: #000;
   font-size: 36pt;
   letter-spacing: 4px;
-  text-shadow:
-       2px  2px 1px #000000,
-      -2px  2px 1px #000000,
-       2px -2px 1px #000000,
-      -2px -2px 1px #000000,
-       2px  0px 1px #000000,
-       0px  2px 1px #000000,
-      -2px  0px 1px #000000,
-       0px -2px 1px #000000;
+  font-weight: 600;
 }
 .number {
   text-align: center;
