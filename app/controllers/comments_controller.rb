@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
     @comment.trip_id = @trip.id
     @comment.user_id = current_user.id
     unless @comment.save
+      # 通知の作成
       @trip.create_notification_comment!(current_user, @comment.id)
       render 'error'
     end

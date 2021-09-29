@@ -3,7 +3,7 @@ module NotificationsHelper
     @visitor = notification.visitor
     @comment = nil
     @visitor_comment = notification.comment_id
-    # notification.actionがfollowかlikeかcommentか
+    # actionごとに振り分け
     case notification.action
       when "follow"
         tag.a(notification.visitor.name) + "があなたをフォローしました"
@@ -17,6 +17,7 @@ module NotificationsHelper
     end
   end
 
+  # 未確認の通知メソッドの設定
   def unchecked_notifications
     @notifications = current_user.passive_notifications.where(checked: false)
   end

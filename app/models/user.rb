@@ -22,8 +22,10 @@ class User < ApplicationRecord
   validates :sex, presence: true
   validates :birth_at, presence: true
   validates :introduction, length: { maximum: 50 }
+
   enum sex: { 女性: 1, 男性: 2, 該当なし: 3 }
 
+  # フォロー機能
   def follow(user_id)
     relationships.create(followed_id: user_id)
   end
@@ -36,6 +38,19 @@ class User < ApplicationRecord
     followings.include?(user)
   end
 
+  # フォロー時の通知機能
+  def create_notification_follow!(current_user)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ", current_user.id, id, 'follow'])
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        visited_id: id,
+        action: 'follow'
+      )
+      notification.save if notification.valid?
+    end
+  end
+
+  # 検索機能
   def self.search_for(content, method)
     if method == 'perfect'
       User.where(name: content)
@@ -48,17 +63,7 @@ class User < ApplicationRecord
     end
   end
 
-  def create_notification_follow!(current_user)
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ", current_user.id, id, 'follow'])
-    if temp.blank?
-      notification = current_user.active_notifications.new(
-        visited_id: id,
-        action: 'follow'
-      )
-      notification.save if notification.valid?
-    end
-  end
-
+  # 年齢の表示設定
   def age
     (Date.today.strftime('%Y%m%d').to_i - birth_at.strftime('%Y%m%d').to_i) / 10000
   end

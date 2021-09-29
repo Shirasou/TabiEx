@@ -5,7 +5,7 @@ class TripsController < ApplicationController
 
   def index
     @tag_lists = Tag.all
-    @trips = Trip.page(params[:page]).per(6)
+    @trips = Trip.order(created_at: :desc).page(params[:page]).per(6)
   end
 
   def new
