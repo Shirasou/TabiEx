@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: 'homes#top'
+  get "about" => "homes#about"
   devise_for :users
   resources :trips do
     resource :trip_likes, only: [:create, :destroy]

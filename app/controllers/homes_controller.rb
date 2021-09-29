@@ -11,4 +11,7 @@ class HomesController < ApplicationController
     @category17 = Category.find(17)
     @category16 = Category.find(16)
   end
+
+  def about
+  end
 end

@@ -1,0 +1,61 @@
+<div>
+  <%= image_tag "About.jpg", class: "show-img" %>
+</div>
+<h2 class="category_title">About Site</h2>
+<div class="container d-flex align-items-center justify-content-center" style="height: 300px;">
+  <div>
+    <h1 class="text-center"><strong>Website Theme</strong></h1>
+    <p class="text-center pt-2">コロナ禍で変わりゆく街並みをブログのようなSNSサイトの投稿という形でこの世に残す</p>
+  </div>
+</div>
+<div class="container">
+  <h2 class="text-center pt-2 mb-4"><strong>How to use</strong></h2>
+  <p class="about-step"><strong>Step1</strong></p>
+  <div class="row d-flex align-items-center justify-content-center">
+    <div class="col-md-4 figure pl-lg-5" style="width: 130%;">
+      <%= image_tag "Create_trip.png", class: "figure-img img-fluid rounded" %>
+    </div>
+    <div class="col-md-5">
+      <p class="h6"><%= link_to "Create Trip", new_trip_path %>にアクセスして旅行の体験を投稿しよう！！</p></br>
+      <p class="text-center">
+        <%= link_to "Create Tripへ", new_trip_path %>
+      </p>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <p class="about-step"><strong>Step2</strong></p>
+  <div class="row d-flex align-items-center justify-content-center">
+    <div class="col-md-5">
+      <p class="h6"><%= link_to "Create Trip Way", new_trip_way_path %>にアクセスしてCreate Tripで作成した旅行の体験を複数選択して旅行の記録を投稿しよう！！</p></br>
+      <p class="text-center">
+        <%= link_to "Create Tripへ", new_trip_way_path %>
+      </p>
+    </div>
+    <div class="col-md-4 figure pl-lg-5" style="width: 130%;">
+      <%= image_tag "Create_tripway.png", class: "figure-img img-fluid rounded" %>
+    </div>
+  </div>
+</div>
+<div class="container mb-4">
+  <h2 class="text-center pt-2 mb-4"><strong>3 SNS Function</strong></h2>
+  <div class="row d-flex align-items-center justify-content-center">
+    <div class="col-md-3 text-center">
+      <i class="fas fa-heart fa-5x"></i>
+      <h3>いいね機能</h3>
+    </div>
+    <div class="col-md-3 text-center">
+      <i class="fas fa-user-friends fa-5x"></i>
+      <h3>フォロー機能</h3>
+    </div>
+    <div class="col-md-3 text-center">
+      <i class="fas fa-comments fa-5x"></i>
+      <h3>メッセージ機能</h3>
+    </div>
+  </div>
+  <div class="row d-flex align-items-center justify-content-center mt-5">
+    <div>
+      <%= link_to "会員登録へ", new_user_registration_path, class: "btn btn-outline-success" %>
+    </div>
+  </div>
+</div>
