@@ -19,6 +19,7 @@ class User < ApplicationRecord
   has_one_attached :image
 
   validates :name, length: { minimum: 2, maximum: 20 }, presence: true
+  validates :email, presence: true, length: { maximum: 300 }, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
   validates :sex, presence: true
   validates :birth_at, presence: true
   validates :introduction, length: { maximum: 50 }
