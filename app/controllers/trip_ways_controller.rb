@@ -4,7 +4,7 @@ class TripWaysController < ApplicationController
   before_action :set_trip_way, only: [:show, :edit, :update, :destroy]
 
   def index
-    @trip_ways = TripWay.page(params[:page]).per(3)
+    @trip_ways = TripWay.order(created_at: :desc).page(params[:page]).per(3)
     @tag_lists = Tag.all
   end
 

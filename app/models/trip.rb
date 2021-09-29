@@ -7,7 +7,6 @@ class Trip < ApplicationRecord
   has_many :trip_likes, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_many :trip_way_relations, dependent: :destroy
-  has_many :trip_ways
   has_many_attached :images
 
   validates :category_id, presence: true

@@ -1,7 +1,6 @@
 class TripWay < ApplicationRecord
   belongs_to :user
-  has_many :trip_way_relations, dependent: :destroy
-  has_many :trips
+  has_many :trip_way_relations
   accepts_nested_attributes_for :trip_way_relations, allow_destroy: true
 
   validates :title, presence: true, length: { maximum: 30 }
