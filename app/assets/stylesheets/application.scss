@@ -123,7 +123,7 @@ ol li{
 // user_card関連の設定
 .user-card {
   position: absolute;
-  top: 520px;
+  top: 250px;
   right: 10%;
   display: inline-block;
 }
@@ -132,11 +132,7 @@ ol li{
   height: 68px;
   border-radius: 50%;
 }
-.user_card {
-  border-radius: 15px;
-  margin-left: 30px;
-  margin-right: 30px;
-}
+
 .user_card-body {
   position: relative;
   bottom: 35px;
