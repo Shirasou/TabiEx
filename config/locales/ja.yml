@@ -15,6 +15,7 @@ ja:
       tag: タグ
       trip_way: 道のり
       trip: 旅行記
+      trip_way_relation: 旅行記
 
     attributes:
       category:
@@ -71,6 +72,9 @@ ja:
         images: 画像
         created_at: 登録日時
         updated_at: 更新日時
+      trip_way_relation:
+        id: ID
+        trip_id: 旅行記
   date:
     abbr_day_names:
     - 日

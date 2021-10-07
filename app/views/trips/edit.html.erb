@@ -6,7 +6,7 @@
     <h2 class="text-center">Edit Trip</h2>
   </div>
 </div>
-<%= render 'form', trip: @trip %>
+<%= render 'form', trip: @trip, trip_tags: @trip_tags %>
 
 <script>
   $('#evaluation_stars').raty({

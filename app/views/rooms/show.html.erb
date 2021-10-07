@@ -14,7 +14,7 @@
             <% if m.user_id == current_user.id %>
               <div class="d-flex align-items-center text-right justify-content-end">
                 <div class="pr-2">
-                  <span class="name"><%= m.user.name %></span>
+                  <span class="name"><%= m.created_at.strftime("%Y/%m/%d  %H:%M") %>&nbsp;&nbsp;<%= m.user.name %></span>
                   <p class="msg"><%= m.message %></p>
                 </div>
                 <div>
