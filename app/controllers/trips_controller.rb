@@ -10,7 +10,6 @@ class TripsController < ApplicationController
 
   def new
     @trip = Trip.new
-    @trip_tags = @trip.tags
   end
 
   def create
@@ -38,12 +37,15 @@ class TripsController < ApplicationController
   end
 
   def edit
+    @tag_list = @trip.tags.pluck(:name).split(nil)
   end
 
   def update
     # 一旦、すべてのimageの紐つけを解除
     @trip.images.detach
+    tag_list = params[:trip][:name].split(nil)
     if @trip.update(trip_params)
+      @trip.save_tag(tag_list)
       flash[:notice] = "編集しました"
       redirect_to @trip
     else

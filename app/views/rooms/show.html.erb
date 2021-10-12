@@ -44,7 +44,7 @@
         <% end %>
       </div>
       <div class="navbar navbar-expand-sm">
-        <%= form_with model: @message, class: "d-flex", local:true do |f| %>
+        <%= form_with model: @message, class: "d-flex" do |f| %>
           <%= f.text_field :message, placeholder: "メッセージを入力して下さい", class: "form-control form-chat" %>
           <%= f.hidden_field :room_id, value: @room.id %>
           <%= f.button :type => "submit", style: 'border-style: none;' do %>

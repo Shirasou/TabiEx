@@ -15,9 +15,10 @@ ja:
       tag: タグ
       trip_way: 道のり
       trip: 旅行記
-      trip_way_relation: 旅行記
-
+      trip_way/trip_way_relations: 旅行記
     attributes:
+      trip_way/trip_way_relations:
+        trip: 旅行記
       category:
         id: ID
         name: カテゴリ名

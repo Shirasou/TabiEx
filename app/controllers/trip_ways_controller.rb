@@ -60,9 +60,9 @@ class TripWaysController < ApplicationController
   end
 
   def trip_way_params
-    params.require(:trip_way).permit(:title, :evaluation, :description, :start_date,
-    :finish_date, :number_of_people,
-    trip_way_relations_attributes: [:trip_id, :trip_way_id, :number, :_destroy])
+    params.require(:trip_way).permit(
+      :title, :evaluation, :description, :start_date,:finish_date, :number_of_people,
+      trip_way_relations_attributes: [:trip_id, :trip_way_id, :number, :_destroy])
   end
 
   def ensure_correct_user
