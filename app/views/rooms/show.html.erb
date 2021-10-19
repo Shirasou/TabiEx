@@ -1,3 +1,4 @@
+
 <div class="container-fluid ly_main">
   <div class="row chat justify-content-md-center">
     <div class="col-md-3 text-center">
@@ -8,40 +9,10 @@
       <% end %>
     </div>
     <div class="col-md-8 chat-main">
-      <div class="px-2 scroll">
-        <% if @messages.present? %>
-          <% @messages.each do |m| %>
-            <% if m.user_id == current_user.id %>
-              <div class="d-flex align-items-center text-right justify-content-end">
-                <div class="pr-2">
-                  <span class="name"><%= m.created_at.strftime("%Y/%m/%d  %H:%M") %>&nbsp;&nbsp;<%= m.user.name %></span>
-                  <p class="msg"><%= m.message %></p>
-                </div>
-                <div>
-                  <% if m.user.image.attached? %>
-                    <%= image_tag m.user.image, class: "img1 rounded-circle" %>
-                  <% else %>
-                    <%= image_tag 'no-img.jpg', class: "img1 rounded-circle" %>
-                  <% end %>
-                </div>
-              </div>
-            <% else %>
-              <div class="d-flex align-items-center">
-                <div class="pr-2">
-                  <span class="name"><%= m.user.name %></span>
-                  <p class="msg"><%= m.message %></p>
-                </div>
-                <div>
-                  <% if m.user.image.attached? %>
-                    <%= image_tag m.user.image, class: "img1 rounded-circle" %>
-                  <% else %>
-                    <%= image_tag 'no-img.jpg', class: "img1 rounded-circle" %>
-                  <% end %>
-                </div>
-              </div>
-            <% end %>
-          <% end %>
-        <% end %>
+      <div class="messages">
+        <div class="px-2 scroll">
+          <%= render 'messages/index', messages: @messages, room: @room %>
+        </div>
       </div>
       <div class="navbar navbar-expand-sm">
         <%= form_with model: @message, class: "d-flex" do |f| %>

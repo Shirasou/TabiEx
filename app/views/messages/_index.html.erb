@@ -1,0 +1,36 @@
+<div id="room_<%= @room.id %>">
+          <% if messages.present? %>
+            <% messages.each do |message| %>
+
+              <% if message.user_id == current_user.id %>
+                <div class="d-flex align-items-center text-right justify-content-end">
+                  <div class="pr-2">
+                    <span class="name created_at"><%= message.created_at.strftime("%Y/%m/%d  %H:%M") %>&nbsp;&nbsp;<%= message.user.name %></span>
+                    <p class="msg"><%= message.message %></p>
+                  </div>
+                  <div>
+                    <% if message.user.image.attached? %>
+                      <%= image_tag message.user.image, class: "img1 rounded-circle" %>
+                    <% else %>
+                      <%= image_tag 'no-img.jpg', class: "img1 rounded-circle" %>
+                    <% end %>
+                  </div>
+                </div>
+              <% else %>
+                <div class="d-flex align-items-center">
+                  <div class="pr-2">
+                    <span class="name created_at"><%= message.created_at.strftime("%Y/%m/%d  %H:%M") %>&nbsp;&nbsp;<%= message.user.name %></span>
+                    <p class="msg"><%= message.message %></p>
+                  </div>
+                  <div>
+                    <% if message.user.image.attached? %>
+                      <%= image_tag message.user.image, class: "img1 rounded-circle" %>
+                    <% else %>
+                      <%= image_tag 'no-img.jpg', class: "img1 rounded-circle" %>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+          </div>

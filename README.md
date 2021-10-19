@@ -17,13 +17,10 @@
 
 ### 主な利用シーン
 - 旅行者：旅行体験の共有
-- 観光地の従業員：自分のお店のPR
 
 ## 設計書
-- [UIFlow（管理者側）]
-: https://drive.google.com/file/d/1IC7GJb27riU1GWz9xWowaziseWgonUtV/view?usp=sharing
-- [UIFlow（会員側）]
-: https://drive.google.com/file/d/17Z36Js3LCwcklEI-gHJCTtz9omL22-vZ/view?usp=sharing
+- [UIFlow]
+: https://drive.google.com/drive/folders/1D-u9w3O7_fCfeeS0MITEd91zSJWYxlJT
 - [ER図]
 : https://drive.google.com/file/d/1sa2PXyTmYNBPBIcOvLF0CDp5TLTWAgbm/view?usp=sharing
 - [テーブル定義書]
