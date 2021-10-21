@@ -1,27 +1,18 @@
-
 <div class="container-fluid ly_main">
   <div class="row chat justify-content-md-center">
     <div class="col-md-3 text-center">
       <% @entries.each do |e| %>
-        <% unless e.user_id == current_user.id %>
+        <% unless e.user_id== current_user.id %>
           <%= render 'users/info', user: e.user %>
         <% end %>
       <% end %>
     </div>
     <div class="col-md-8 chat-main">
-      <div class="messages">
-        <div class="px-2 scroll">
-          <%= render 'messages/index', messages: @messages, room: @room %>
+        <div class="px-2 scroll messages">
+          <%= render 'messages/each', messages: @messages %>
         </div>
-      </div>
-      <div class="navbar navbar-expand-sm">
-        <%= form_with model: @message, class: "d-flex" do |f| %>
-          <%= f.text_field :message, placeholder: "メッセージを入力して下さい", class: "form-control form-chat" %>
-          <%= f.hidden_field :room_id, value: @room.id %>
-          <%= f.button :type => "submit", style: 'border-style: none;' do %>
-            <i class="fas fa-paper-plane fa-2x" aria-hidden="true"></i>
-          <% end %>
-        <% end %>
+      <div id="form_message" class="navbar navbar-expand-sm">
+        <%= render 'messages/form', message: @message, room: @room %>
       </div>
     </div>
   </div>

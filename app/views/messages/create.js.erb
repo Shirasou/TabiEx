@@ -1,2 +1,1 @@
-$("#room_<%= @room.id %> .messages").html("<%= j(render 'messages/index', messages: @messages, room: @room) %>");
-$('input[type=text]').val("")
+$("#form_message").html("<%= j(render 'messages/form', message: @message, room: @room) %>");

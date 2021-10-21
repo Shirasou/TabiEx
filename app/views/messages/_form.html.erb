@@ -1,0 +1,7 @@
+<%= form_with model: message, class: "d-flex" do |f| %>
+  <%= f.text_field :message, placeholder: "メッセージを入力して下さい", class: "form-control form-chat" %>
+  <%= f.hidden_field :room_id, value: room.id %>
+  <%= f.button :type => "submit", style: 'border-style: none;' do %>
+    <i class="fas fa-paper-plane fa-2x" aria-hidden="true"></i>
+  <% end %>
+<% end %>

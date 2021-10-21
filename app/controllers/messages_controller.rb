@@ -19,7 +19,8 @@ class MessagesController < ApplicationController
           notification.checked = true
         end
         notification.save if notification.valid?
-        redirect_to "/rooms/#{@message.room_id}"
+        @messages = @room.messages.includes(:user).order("created_at asc")
+        render template: "messages/each"
         flash[:notice] = "メッセージを送信しました。"
       end
     else
